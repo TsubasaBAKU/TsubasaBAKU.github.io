@@ -166,7 +166,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jsp/">Jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
                     </div>
                 </section>
                 
@@ -244,6 +244,106 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-request、session和application对象" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/25/request、session和application对象/" class="article-date">
+      <time datetime="2016-05-25T15:48:18.000Z" itemprop="datePublished">2016-05-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/25/request、session和application对象/">request、session和application对象</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="作用域："><a href="#作用域：" class="headerlink" title="作用域："></a>作用域：</h3><blockquote>
+<ul>
+<li>request &lt; session &lt; application</li>
+</ul>
+</blockquote>
+<h3 id="各自对应的接口："><a href="#各自对应的接口：" class="headerlink" title="各自对应的接口："></a>各自对应的接口：</h3><blockquote>
+<ul>
+<li><p>request对象: javax.servlet.ServletRequest其子接口：javax.servlet.http.HttpServletRequest</p>
+</li>
+<li><p>session对象：javax.servlet.http.HttpSession</p>
+</li>
+<li><p>application对象：javax.servlet.ServletContext</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="三者共有的方法："><a href="#三者共有的方法：" class="headerlink" title="三者共有的方法："></a>三者共有的方法：</h3><blockquote>
+<ul>
+<li><p>setAttribute(String name,Object object)</p>
+</li>
+<li><p>getAttribute(String name)</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="简单分析三者："><a href="#简单分析三者：" class="headerlink" title="简单分析三者："></a>简单分析三者：</h3><blockquote>
+<ul>
+<li><p>requset:调用上面两个方法，只有在一次请求上生效，当把信息返回给客户端时，该对象就销毁。</p>
+</li>
+<li><p>session:是服务器的行为，用于跟踪客户的状态。当用户去访问某个站点时，服务器端就会为客户产生一个sessionID，以cookie的方式返回给客户端，当客户去访问该站点的其他服务时，就会带着当前sessionID一起发出请求，以识别是哪个用户，一个用户就好比一个session对象，互不干扰。</p>
+</li>
+</ul>
+<p><img src="../../public/img/session.png" alt="cmd-markdown-logo"></p>
+<blockquote>
+<p>session失效原因<br>(1) session过期<br>(2) 服务器端调用了invalidate(),让其失效<br>(3) &lt;%@ page session=”false” %&gt;</p>
+<p>session重要方法：<br>(1) getId():获取session的id，每个id号都不同<br>(2) isNew():判断当前session是不是新的<br>(3) invalidate():让当前session失效（登出）<br>(4) setMaxInactiveInterval(int interval):设置session处于不活动的时间间隔，以秒为单位，超过该间隔，session失效。如果是负数，或者0，则不限制session活动时间间隔，默认一般是30分钟。（登录，购物车）</p>
+</blockquote>
+<ul>
+<li>application:一个服务器就一个application对象，所有用户共享一个application，当服务器停止时，application被销毁（网站访问次数）</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jsp/">Jsp</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Java验证码生成程序" class="article article-type-post" itemscope itemprop="blogPost">
   

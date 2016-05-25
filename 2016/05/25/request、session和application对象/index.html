@@ -9,18 +9,53 @@
 
   <meta charset="utf-8">
   
-  <title>about | TsubasaBAKU</title>
+  <title>request、session和application对象 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Never too old to learn!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/about/index.html">
+  <meta name="description" content="作用域：
+
+request &amp;lt; session &amp;lt; application
+
+
+各自对应的接口：
+
+request对象: javax.servlet.ServletRequest其子接口：javax.servlet.http.HttpServletRequest
+
+session对象：javax.servlet.http.HttpSession
+
+application对象：javax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="request、session和application对象">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/05/25/request、session和application对象/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="Never too old to learn!">
-<meta property="og:updated_time" content="2016-05-25T08:53:12.000Z">
+<meta property="og:description" content="作用域：
+
+request &amp;lt; session &amp;lt; application
+
+
+各自对应的接口：
+
+request对象: javax.servlet.ServletRequest其子接口：javax.servlet.http.HttpServletRequest
+
+session对象：javax.servlet.http.HttpSession
+
+application对象：javax">
+<meta property="og:image" content="https://github.com/TsubasaBAKU/../../public/img/session.png">
+<meta property="og:updated_time" content="2016-05-25T16:23:41.267Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="Never too old to learn!">
+<meta name="twitter:title" content="request、session和application对象">
+<meta name="twitter:description" content="作用域：
+
+request &amp;lt; session &amp;lt; application
+
+
+各自对应的接口：
+
+request对象: javax.servlet.ServletRequest其子接口：javax.servlet.http.HttpServletRequest
+
+session对象：javax.servlet.http.HttpSession
+
+application对象：javax">
+<meta name="twitter:image" content="https://github.com/TsubasaBAKU/../../public/img/session.png">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -50,7 +85,7 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -239,11 +274,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-request、session和application对象" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/about/index.html" class="article-date">
-      <time datetime="2016-05-25T08:53:10.000Z" itemprop="datePublished">2016-05-25</time>
+      <a href="/2016/05/25/request、session和application对象/" class="article-date">
+      <time datetime="2016-05-25T15:48:18.000Z" itemprop="datePublished">2016-05-25</time>
 </a>
     </div>
   
@@ -256,7 +291,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      about
+      request、session和application对象
     </h1>
   
 
@@ -264,8 +299,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jsp/">Jsp</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -273,36 +316,125 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
+        <h3 id="作用域："><a href="#作用域：" class="headerlink" title="作用域："></a>作用域：</h3><blockquote>
+<ul>
+<li>request &lt; session &lt; application</li>
+</ul>
+</blockquote>
+<h3 id="各自对应的接口："><a href="#各自对应的接口：" class="headerlink" title="各自对应的接口："></a>各自对应的接口：</h3><blockquote>
+<ul>
+<li><p>request对象: javax.servlet.ServletRequest其子接口：javax.servlet.http.HttpServletRequest</p>
+</li>
+<li><p>session对象：javax.servlet.http.HttpSession</p>
+</li>
+<li><p>application对象：javax.servlet.ServletContext</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="三者共有的方法："><a href="#三者共有的方法：" class="headerlink" title="三者共有的方法："></a>三者共有的方法：</h3><blockquote>
+<ul>
+<li><p>setAttribute(String name,Object object)</p>
+</li>
+<li><p>getAttribute(String name)</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="简单分析三者："><a href="#简单分析三者：" class="headerlink" title="简单分析三者："></a>简单分析三者：</h3><blockquote>
+<ul>
+<li><p>requset:调用上面两个方法，只有在一次请求上生效，当把信息返回给客户端时，该对象就销毁。</p>
+</li>
+<li><p>session:是服务器的行为，用于跟踪客户的状态。当用户去访问某个站点时，服务器端就会为客户产生一个sessionID，以cookie的方式返回给客户端，当客户去访问该站点的其他服务时，就会带着当前sessionID一起发出请求，以识别是哪个用户，一个用户就好比一个session对象，互不干扰。</p>
+</li>
+</ul>
+<p><img src="../../public/img/session.png" alt="cmd-markdown-logo"></p>
+<blockquote>
+<p>session失效原因<br>(1) session过期<br>(2) 服务器端调用了invalidate(),让其失效<br>(3) &lt;%@ page session=”false” %&gt;</p>
+<p>session重要方法：<br>(1) getId():获取session的id，每个id号都不同<br>(2) isNew():判断当前session是不是新的<br>(3) invalidate():让当前session失效（登出）<br>(4) setMaxInactiveInterval(int interval):设置session处于不活动的时间间隔，以秒为单位，超过该间隔，session失效。如果是负数，或者0，则不限制session活动时间间隔，默认一般是30分钟。（登录，购物车）</p>
+</blockquote>
+<ul>
+<li>application:一个服务器就一个application对象，所有用户共享一个application，当服务器停止时，application被销毁（网站访问次数）</li>
+</ul>
+</blockquote>
 
-
-          
-        
       
     </div>
     
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/05/25/request、session和application对象/">request、session和application对象</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
+        <p><span>发布时间:</span>2016-05-25, 23:48:18</p>
+        <p><span>最后更新:</span>2016-05-26, 00:23:41</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/05/25/request、session和application对象/" title="request、session和application对象">https://github.com/TsubasaBAKU/2016/05/25/request、session和application对象/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/05/25/request、session和application对象/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/05/25/Java验证码生成程序/">
+                    Java验证码生成程序
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域："><span class="toc-number">1.</span> <span class="toc-text">作用域：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#各自对应的接口："><span class="toc-number">2.</span> <span class="toc-text">各自对应的接口：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三者共有的方法："><span class="toc-number">3.</span> <span class="toc-text">三者共有的方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单分析三者："><span class="toc-number">4.</span> <span class="toc-text">简单分析三者：</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
 
 
 
@@ -320,7 +452,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"about　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"request、session和application对象　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -336,7 +468,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="about/index.html" data-title="about" data-url="https://github.com/TsubasaBAKU/about/index.html"></div>
+    <div class="ds-thread" data-thread-key="2016/05/25/request、session和application对象/" data-title="request、session和application对象" data-url="https://github.com/TsubasaBAKU/2016/05/25/request、session和application对象/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -355,6 +487,24 @@
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/05/25/Java验证码生成程序/" title="下一篇: Java验证码生成程序">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/request、session和application对象/">request、session和application对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Java验证码生成程序/">Java验证码生成程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Linux常用命令/">“linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/GitCommand/">GitCommand</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/struts2模型驱动/">struts2模型驱动</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/HibernateTemplate/">HibernateTemplate</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Hibernate三种查询方式/">Hibernate三种查询方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/java邮件发送/">java邮件发送</a></li></ul>
 
 
 
