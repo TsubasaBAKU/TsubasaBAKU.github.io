@@ -245,6 +245,208 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-ActionContext详解2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/26/ActionContext详解2/" class="article-date">
+      <time datetime="2016-05-25T17:42:34.000Z" itemprop="datePublished">2016-05-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/26/ActionContext详解2/">ActionContext详解2</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="ActionContext"><a href="#ActionContext" class="headerlink" title="ActionContext"></a>ActionContext</h2><p>web标准的存放数据的范围有</p>
+<ul>
+<li><p>pageContext域</p>
+</li>
+<li><p>request域</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/SSH框架/">SSH框架</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/05/26/ActionContext详解2/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-ActionContext详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/26/ActionContext详解/" class="article-date">
+      <time datetime="2016-05-25T17:15:57.000Z" itemprop="datePublished">2016-05-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/26/ActionContext详解/">ActionContext详解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="ActionContext"><a href="#ActionContext" class="headerlink" title="ActionContext"></a>ActionContext</h2><p>ActionContext是Action的上下文，Struts2自动在其中保存了一些在Action执行过程中所需的对象，比如session, parameters, locale等。Struts2会根据每个执行HTTP请求的线程来创建对应的ActionContext，即一个线程有一个唯一的ActionContext。因此，使用者可以使用静态方法ActionContext.getContext()来获取当前线程的ActionContext，也正是由于这个原因，使用者不用去操心让Action是线程安全的。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/05/26/ActionContext详解/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-pageContext对象" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/26/pageContext对象/" class="article-date">
+      <time datetime="2016-05-25T16:28:36.000Z" itemprop="datePublished">2016-05-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/26/pageContext对象/">pageContext对象</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="pageContext对象"><a href="#pageContext对象" class="headerlink" title="pageContext对象"></a>pageContext对象</h2><p>这个对象代表页面上下文，该对象主要用于访问JSP之间的共享数据。</p>
+<p>pageContext是PageContext类的实例，使用pageContext可以访问page、request、session、application范围的变量。</p>
+<p>getAttribute(String name)：取得page范围内的name属性。</p>
+<p>getAttribute(String name,int scope)：取得指定范围内的name属性，其中scope可以是如下4个值：</p>
+<p>（1）PageContext.PAGE_SCOPE：对应于page范围。</p>
+<p>（2）PageContext.REQUEST_SCOPE：对应于request范围。</p>
+<p>（3）PageContext.SESSION_SCOPE：对应于session范围。</p>
+<p>（4）PageContext.APPLICATION_SCOPE：对应于application范围。</p>
+<h2 id="page范围"><a href="#page范围" class="headerlink" title="page范围"></a>page范围</h2><p>只在一个页面保存属性，跳转之后无效。page范围的对象被绑定到javax.servlet.jsp.PageContext对象中。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jsp/">Jsp</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-request、session和application对象" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -272,46 +474,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="作用域："><a href="#作用域：" class="headerlink" title="作用域："></a>作用域：</h3><blockquote>
-<ul>
-<li>request &lt; session &lt; application</li>
-</ul>
-</blockquote>
-<h3 id="各自对应的接口："><a href="#各自对应的接口：" class="headerlink" title="各自对应的接口："></a>各自对应的接口：</h3><blockquote>
-<ul>
-<li><p>request对象: javax.servlet.ServletRequest其子接口：javax.servlet.http.HttpServletRequest</p>
-</li>
-<li><p>session对象：javax.servlet.http.HttpSession</p>
-</li>
-<li><p>application对象：javax.servlet.ServletContext</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="三者共有的方法："><a href="#三者共有的方法：" class="headerlink" title="三者共有的方法："></a>三者共有的方法：</h3><blockquote>
-<ul>
-<li><p>setAttribute(String name,Object object)</p>
-</li>
-<li><p>getAttribute(String name)</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="简单分析三者："><a href="#简单分析三者：" class="headerlink" title="简单分析三者："></a>简单分析三者：</h3><blockquote>
-<ul>
-<li><p>requset:调用上面两个方法，只有在一次请求上生效，当把信息返回给客户端时，该对象就销毁。</p>
-</li>
-<li><p>session:是服务器的行为，用于跟踪客户的状态。当用户去访问某个站点时，服务器端就会为客户产生一个sessionID，以cookie的方式返回给客户端，当客户去访问该站点的其他服务时，就会带着当前sessionID一起发出请求，以识别是哪个用户，一个用户就好比一个session对象，互不干扰。</p>
-</li>
-</ul>
-<p><img src="../../public/img/session.png" alt="cmd-markdown-logo"></p>
-<blockquote>
-<p>session失效原因<br>(1) session过期<br>(2) 服务器端调用了invalidate(),让其失效<br>(3) &lt;%@ page session=”false” %&gt;</p>
-<p>session重要方法：<br>(1) getId():获取session的id，每个id号都不同<br>(2) isNew():判断当前session是不是新的<br>(3) invalidate():让当前session失效（登出）<br>(4) setMaxInactiveInterval(int interval):设置session处于不活动的时间间隔，以秒为单位，超过该间隔，session失效。如果是负数，或者0，则不限制session活动时间间隔，默认一般是30分钟。（登录，购物车）</p>
-</blockquote>
-<ul>
-<li>application:一个服务器就一个application对象，所有用户共享一个application，当服务器停止时，application被销毁（网站访问次数）</li>
-</ul>
-</blockquote>
-
+              <h2 id="作用域："><a href="#作用域：" class="headerlink" title="作用域："></a>作用域：</h2><ul>
+<li>request &lt; session &lt; application
+          
       
     </div>
     
@@ -328,6 +493,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jsp/">Jsp</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/05/25/request、session和application对象/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -392,7 +561,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/05/25/Java验证码生成程序/#more">more >></a>
+          <a href="/2016/05/25/Java验证码生成程序/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -458,7 +627,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/05/25/Linux常用命令/#more">more >></a>
+          <a href="/2016/05/25/Linux常用命令/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -524,7 +693,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/05/25/GitCommand/#more">more >></a>
+          <a href="/2016/05/25/GitCommand/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -591,7 +760,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/05/25/struts2模型驱动/#more">more >></a>
+          <a href="/2016/05/25/struts2模型驱动/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -659,7 +828,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/05/25/HibernateTemplate/#more">more >></a>
+          <a href="/2016/05/25/HibernateTemplate/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -725,7 +894,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/05/25/Hibernate三种查询方式/#more">more >></a>
+          <a href="/2016/05/25/Hibernate三种查询方式/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -744,75 +913,10 @@
 
 
   
-    <article id="post-java邮件发送" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2016/05/24/java邮件发送/" class="article-date">
-      <time datetime="2016-05-24T12:16:20.000Z" itemprop="datePublished">2016-05-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/24/java邮件发送/">java邮件发送</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><h2 id="1-1-邮件发送和接收用到的协议"><a href="#1-1-邮件发送和接收用到的协议" class="headerlink" title="1.1 邮件发送和接收用到的协议"></a>1.1 邮件发送和接收用到的协议</h2><ul>
-<li><p>SMTP:简单邮件传输协议（Simple Mail Transfer Protocol），属于TCP/IP协议簇，它是一组用于由源地址到目的地址传送邮件的规则。</p>
-</li>
-<li><p>POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议簇，主要用于支持使用客户端远程管理在服务器上的电子邮件。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a><a class="article-category-link" href="/categories/JAVA/编程功能模块/">编程功能模块</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/邮件/">邮件</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/05/24/java邮件发送/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">

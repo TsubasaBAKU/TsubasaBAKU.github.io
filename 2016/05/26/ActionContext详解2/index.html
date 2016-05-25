@@ -9,17 +9,32 @@
 
   <meta charset="utf-8">
   
-  <title>Archives: 2016 | TsubasaBAKU</title>
+  <title>ActionContext详解2 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Never too old to learn!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TsubasaBAKU">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/archives/2016/index.html">
+  <meta name="description" content="ActionContextweb标准的存放数据的范围有
+
+pageContext域
+
+request域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ActionContext详解2">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解2/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="Never too old to learn!">
+<meta property="og:description" content="ActionContextweb标准的存放数据的范围有
+
+pageContext域
+
+request域">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/ActionContext.png">
+<meta property="og:updated_time" content="2016-05-25T17:57:16.297Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TsubasaBAKU">
-<meta name="twitter:description" content="Never too old to learn!">
+<meta name="twitter:title" content="ActionContext详解2">
+<meta name="twitter:description" content="ActionContextweb标准的存放数据的范围有
+
+pageContext域
+
+request域">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/ActionContext.png">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -49,8 +64,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
-          isArchive: true,
+          isPost: true,
+          isArchive: false,
           isTag: false,
           isCategory: false,
           open_in_new: false,
@@ -238,373 +253,234 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-ActionContext详解2" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/26/ActionContext详解2/" class="archive-article-date">
-      <time datetime="2016-05-25T17:42:34.000Z" itemprop="datePublished">05-26</time>
+    <div class="article-meta">
+      <a href="/2016/05/26/ActionContext详解2/" class="article-date">
+      <time datetime="2016-05-25T17:42:34.000Z" itemprop="datePublished">2016-05-26</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/26/ActionContext详解2/">ActionContext详解2</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ActionContext详解2
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/SSH框架/">SSH框架</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="ActionContext"><a href="#ActionContext" class="headerlink" title="ActionContext"></a>ActionContext</h2><p>web标准的存放数据的范围有</p>
+<ul>
+<li><p>pageContext域</p>
+</li>
+<li><p>request域</p>
+<a id="more"></a>
+</li>
+<li><p>session域</p>
+</li>
+<li><p>application域（servletcontext）</p>
+</li>
+</ul>
+<p>Struts2自己又定义了一个容器来存放数据，即ActionContext。</p>
+<ul>
+<li>ActionContext是个map集合，它持有了4个标准域，通过它可以获取四个标准容器，不仅如此，它还引用了其它Struts2自己定义的对象：</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/ActionContext.png" alt="cmd-markdown-logo"></p>
+<h2 id="ActionContext的几个特点"><a href="#ActionContext的几个特点" class="headerlink" title="ActionContext的几个特点"></a>ActionContext的几个特点</h2><ul>
+<li><p>ActionContext是Struts2新设计的存储数据的容器，是个map集合</p>
+</li>
+<li><p>我们可以通过ActionContext方便的获取到其它容器，如同一个快捷方式，是Struts2的数据中心</p>
+</li>
+<li><p>ActionContext是threadloacl线程绑定的，当Struts2收到请求后，会马上创建一个actionContext，然后各个位置都可以访问到它</p>
+</li>
+<li><p>意思是action运行的上下文，负责存储action运行时产生的数据</p>
+</li>
+<li><p>ActionContext.getContext():获取ActionContext里的大map集合，ActionContext.getContext().getValueStack()获取值栈</p>
+</li>
+</ul>
+
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/26/ActionContext详解/" class="archive-article-date">
-      <time datetime="2016-05-25T17:15:57.000Z" itemprop="datePublished">05-26</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/26/ActionContext详解/">ActionContext详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/26/pageContext对象/" class="archive-article-date">
-      <time datetime="2016-05-25T16:28:36.000Z" itemprop="datePublished">05-26</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/26/pageContext对象/">pageContext对象</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/05/26/ActionContext详解2/">ActionContext详解2</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
+        <p><span>发布时间:</span>2016-05-26, 01:42:34</p>
+        <p><span>最后更新:</span>2016-05-26, 01:57:16</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/05/26/ActionContext详解2/" title="ActionContext详解2">https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解2/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解2/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jsp/">Jsp</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/25/request、session和application对象/" class="archive-article-date">
-      <time datetime="2016-05-25T15:48:18.000Z" itemprop="datePublished">05-25</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/25/request、session和application对象/">request、session和application对象</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jsp/">Jsp</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/25/Java验证码生成程序/" class="archive-article-date">
-      <time datetime="2016-05-25T10:52:35.000Z" itemprop="datePublished">05-25</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/25/Java验证码生成程序/">Java验证码生成程序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a><a class="article-category-link" href="/categories/JAVA/编程功能模块/">编程功能模块</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/25/Linux常用命令/" class="archive-article-date">
-      <time datetime="2016-05-25T10:40:56.000Z" itemprop="datePublished">05-25</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/25/Linux常用命令/">“linux常用命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/LINUX/">LINUX</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/25/GitCommand/" class="archive-article-date">
-      <time datetime="2016-05-25T09:18:38.000Z" itemprop="datePublished">05-25</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/25/GitCommand/">GitCommand</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/GIT/">GIT</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/25/struts2模型驱动/" class="archive-article-date">
-      <time datetime="2016-05-24T16:38:47.000Z" itemprop="datePublished">05-25</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/25/struts2模型驱动/">struts2模型驱动</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a><a class="article-category-link" href="/categories/JAVA/SSH框架/">SSH框架</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/25/HibernateTemplate/" class="archive-article-date">
-      <time datetime="2016-05-24T16:01:47.000Z" itemprop="datePublished">05-25</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/25/HibernateTemplate/">HibernateTemplate</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SSH框架/">SSH框架</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/25/Hibernate三种查询方式/" class="archive-article-date">
-      <time datetime="2016-05-24T16:01:22.000Z" itemprop="datePublished">05-25</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/25/Hibernate三种查询方式/">Hibernate三种查询方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SSH框架/">SSH框架</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2016/page/2/">2</a><a class="extend next" rel="next" href="/archives/2016/page/2/">Next &raquo;</a>
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/05/26/ActionContext详解/">
+                    ActionContext详解
+                </a>
+            </div>
+        
     </nav>
-  
 
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ActionContext"><span class="toc-number">1.</span> <span class="toc-text">ActionContext</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ActionContext的几个特点"><span class="toc-number">2.</span> <span class="toc-text">ActionContext的几个特点</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"ActionContext详解2　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/05/26/ActionContext详解2/" data-title="ActionContext详解2" data-url="https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解2/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tsubasabaku"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/05/26/ActionContext详解/" title="下一篇: ActionContext详解">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/ActionContext详解2/">ActionContext详解2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/ActionContext详解/">ActionContext详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/pageContext对象/">pageContext对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/request、session和application对象/">request、session和application对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Java验证码生成程序/">Java验证码生成程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Linux常用命令/">“linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/GitCommand/">GitCommand</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/struts2模型驱动/">struts2模型驱动</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/HibernateTemplate/">HibernateTemplate</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Hibernate三种查询方式/">Hibernate三种查询方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/java邮件发送/">java邮件发送</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
