@@ -9,17 +9,20 @@
 
   <meta charset="utf-8">
   
-  <title>Archives: 2016 | TsubasaBAKU</title>
+  <title>JVM内存分析 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Never too old to learn!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TsubasaBAKU">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/archives/2016/index.html">
+  <meta name="description" content="JVA体系结构JVM体系结构，老话题了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM内存分析">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/01/JVM内存分析/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="Never too old to learn!">
+<meta property="og:description" content="JVA体系结构JVM体系结构，老话题了。">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/JVM.png">
+<meta property="og:updated_time" content="2016-06-01T15:59:48.211Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TsubasaBAKU">
-<meta name="twitter:description" content="Never too old to learn!">
+<meta name="twitter:title" content="JVM内存分析">
+<meta name="twitter:description" content="JVA体系结构JVM体系结构，老话题了。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/JVM.png">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -49,8 +52,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
-          isArchive: true,
+          isPost: true,
+          isArchive: false,
           isTag: false,
           isCategory: false,
           open_in_new: false,
@@ -234,369 +237,229 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-JVM内存分析" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/06/01/JVM内存分析/" class="archive-article-date">
-      <time datetime="2016-06-01T15:14:48.000Z" itemprop="datePublished">06-01</time>
+    <div class="article-meta">
+      <a href="/2016/06/01/JVM内存分析/" class="article-date">
+      <time datetime="2016-06-01T15:14:48.000Z" itemprop="datePublished">2016-06-01</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/01/JVM内存分析/">JVM内存分析</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM内存分析
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="JVA体系结构"><a href="#JVA体系结构" class="headerlink" title="JVA体系结构"></a>JVA体系结构</h1><p>JVM体系结构，老话题了。<br><a id="more"></a><br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/JVM.png" alt="!cmd-markdown-logo"></p>
+<p>如上图所示，JVM主要包括两个子系统和两个组件。</p>
+<p><strong>两个子系统：</strong></p>
+<ul>
+<li><p>Class Loader子系统：根据类的全限定类名来将类加载到运行时数据区的METHOD AREA中。我们可以通过extends java.lang.ClassLoader来编写自己的ClassLoader。</p>
+</li>
+<li><p>Excution Engine子系统：执行引擎。执行classes中的指令。所有JDK的核心都是Excution Engine。不同JDK好坏主要取决于它们各自实现Excution Engine的好坏。</p>
+</li>
+</ul>
+<p><strong>两个组件</strong></p>
+<ul>
+<li><p>Native Interface组件：与native libraries交互，是与其他编程语言的接口。当调用native方法的时候，就进入了一个不受JVM限制的区域。</p>
+</li>
+<li><p>Runtime Data Area：运行时数据区，就是我们常说的JVM内存。主要包括五个部分：</p>
+</li>
+</ul>
+<ol>
+<li>Heap：java堆，一个JVM实例只存在一个堆空间。</li>
+<li>Stack：java栈，JVM对java栈只有两种操作：以帧为单位压栈、以帧为单位出栈。</li>
+<li>Method Area：方法区，被装载的class信息存放在这个区域。当JVM装载某个类型时，它使用类装载器定位到相应的class文件，读入文件内容并传输到JVM中。</li>
+<li>Program Counter：程序计数器。每个线程在启动时都会创建一个pc，总是指向下一条要执行的指令。</li>
+<li>Native Method Stack：本地方法栈。保存的进入本地方法的地址。</li>
+</ol>
+<p><strong>只有堆和方法区是线程共享的，栈，PC，本地方法栈都是以线程为粒度的，每个线程都拥有自己的部分。</strong></p>
+
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-new">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/06/01/多线程回顾/" class="archive-article-date">
-      <time datetime="2016-06-01T02:18:31.000Z" itemprop="datePublished">06-01</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/01/多线程回顾/">多线程回顾</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/06/01/JVM内存分析/">JVM内存分析</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
+        <p><span>发布时间:</span>2016-06-01, 23:14:48</p>
+        <p><span>最后更新:</span>2016-06-01, 23:59:48</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/01/JVM内存分析/" title="JVM内存分析">https://github.com/TsubasaBAKU/2016/06/01/JVM内存分析/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/01/JVM内存分析/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多线程/">多线程</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/29/Hibernate懒加载/" class="archive-article-date">
-      <time datetime="2016-05-29T08:44:13.000Z" itemprop="datePublished">05-29</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/29/Hibernate懒加载/">Hibernate懒加载</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SSH框架/">SSH框架</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/懒加载/">懒加载</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/29/分页查询/" class="archive-article-date">
-      <time datetime="2016-05-29T07:35:51.000Z" itemprop="datePublished">05-29</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/29/分页查询/">数据库分页查询</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分页查询/">分页查询</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/27/项目教学视频/" class="archive-article-date">
-      <time datetime="2016-05-27T13:26:31.000Z" itemprop="datePublished">05-27</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/27/项目教学视频/">项目教学视频</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/项目视频/">项目视频</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/27/ValueStack笔记/" class="archive-article-date">
-      <time datetime="2016-05-27T09:04:50.000Z" itemprop="datePublished">05-27</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/27/ValueStack笔记/">ValueStack笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ValueStack/">ValueStack</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/27/OGNL表达式笔记/" class="archive-article-date">
-      <time datetime="2016-05-27T08:03:25.000Z" itemprop="datePublished">05-27</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/27/OGNL表达式笔记/">OGNL表达式笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OGNL/">OGNL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/27/Servlet笔记/" class="archive-article-date">
-      <time datetime="2016-05-27T02:16:13.000Z" itemprop="datePublished">05-27</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/27/Servlet笔记/">Servlet笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/26/ActionContext详解2/" class="archive-article-date">
-      <time datetime="2016-05-25T17:42:34.000Z" itemprop="datePublished">05-26</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/26/ActionContext详解2/">ActionContext详解2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SSH框架/">SSH框架</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/26/ActionContext详解/" class="archive-article-date">
-      <time datetime="2016-05-25T17:15:57.000Z" itemprop="datePublished">05-26</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/26/ActionContext详解/">ActionContext详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2016/page/2/">2</a><a class="extend next" rel="next" href="/archives/2016/page/2/">Next &raquo;</a>
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/06/01/多线程回顾/">
+                    多线程回顾
+                </a>
+            </div>
+        
     </nav>
-  
 
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JVA体系结构"><span class="toc-number">1.</span> <span class="toc-text">JVA体系结构</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"JVM内存分析　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/06/01/JVM内存分析/" data-title="JVM内存分析" data-url="https://github.com/TsubasaBAKU/2016/06/01/JVM内存分析/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tsubasabaku"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/06/01/多线程回顾/" title="下一篇: 多线程回顾">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/JVM内存分析/">JVM内存分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/多线程回顾/">多线程回顾</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/Hibernate懒加载/">Hibernate懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/分页查询/">数据库分页查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/项目教学视频/">项目教学视频</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/ValueStack笔记/">ValueStack笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/OGNL表达式笔记/">OGNL表达式笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/Servlet笔记/">Servlet笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/ActionContext详解2/">ActionContext详解2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/ActionContext详解/">ActionContext详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/pageContext对象/">pageContext对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/request、session和application对象/">request、session和application对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Java验证码生成程序/">Java验证码生成程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Linux常用命令/">“linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/GitCommand/">GitCommand</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/struts2模型驱动/">struts2模型驱动</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/HibernateTemplate/">HibernateTemplate</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Hibernate三种查询方式/">Hibernate三种查询方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/java邮件发送/">java邮件发送</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
