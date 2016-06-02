@@ -9,17 +9,22 @@
 
   <meta charset="utf-8">
   
-  <title>Archives: 2016/6 | TsubasaBAKU</title>
+  <title>Java类加载回顾 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Never too old to learn!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TsubasaBAKU">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/archives/2016/06/index.html">
+  <meta name="description" content="类加载过程Java类加载有三个过程：装载，链接，初始化。链接又分为验证，准备和解析三个阶段，如下图：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java类加载回顾">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/02/Java类加载回顾/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="Never too old to learn!">
+<meta property="og:description" content="类加载过程Java类加载有三个过程：装载，链接，初始化。链接又分为验证，准备和解析三个阶段，如下图：">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/类加载堆区和方法区.png">
+<meta property="og:updated_time" content="2016-06-02T04:47:30.606Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TsubasaBAKU">
-<meta name="twitter:description" content="Never too old to learn!">
+<meta name="twitter:title" content="Java类加载回顾">
+<meta name="twitter:description" content="类加载过程Java类加载有三个过程：装载，链接，初始化。链接又分为验证，准备和解析三个阶段，如下图：">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.png">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -49,8 +54,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
-          isArchive: true,
+          isPost: true,
+          isArchive: false,
           isTag: false,
           isCategory: false,
           open_in_new: false,
@@ -234,128 +239,230 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Java类加载回顾" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/06/02/Java类加载回顾/" class="archive-article-date">
-      <time datetime="2016-06-02T04:17:56.000Z" itemprop="datePublished">06-02</time>
+    <div class="article-meta">
+      <a href="/2016/06/02/Java类加载回顾/" class="article-date">
+      <time datetime="2016-06-02T04:17:56.000Z" itemprop="datePublished">2016-06-02</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/02/Java类加载回顾/">Java类加载回顾</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java类加载回顾
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类加载/">类加载</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h1><p>Java类加载有三个过程：装载，链接，初始化。链接又分为验证，准备和解析三个阶段，如下图：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.png" alt="cmd-markdown-logo"><br><a id="more"></a><br>(1)装载：查找并加载类的二进制信息。<br>(2)链接：</p>
+<ol>
+<li>验证：检验被加载类的信息的正确性。</li>
+<li>准备：为静态变量分配内存，并执行默认初始化。</li>
+<li>解析：将符号引用转化为直接引用</li>
+</ol>
+<p>(3)初始化：为类的静态变量赋予正确的值</p>
+<p>验证是为了保证字节码文件的正确性。由编译器生成的字节码文件肯定是符合JVM格式的，那如果有高手自己写一个字节码文件让JVM加载并运行呢？</p>
+<h1 id="类的初始化"><a href="#类的初始化" class="headerlink" title="类的初始化"></a>类的初始化</h1><p>类什么时候才会被初始化呢？有以下几种情况：</p>
+<ol>
+<li>创建类的实例，也就是new一个对象。</li>
+<li>访问某个类或接口的静态变量，或者为静态变量赋值。</li>
+<li>调用类的静态方法。</li>
+<li>发射。</li>
+<li>初始化一个类的子类，会先初始化它的父类。</li>
+<li>JVM启动时表明的那个类，即和文件名相同的那个类。</li>
+</ol>
+<p>类的初始化步骤：</p>
+<ol>
+<li>如果类还没有装载和链接，则先进行装载和链接操作。</li>
+<li>假如这个类存在父类，而父类还没有被初始化，那么先初始化父类。</li>
+<li>加入类中存在的初始化语句（如static变量和static块），并依次执行这些初始化语句。</li>
+</ol>
+<h1 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h1><p>类的加载指的是将类的class文件二进制数据读入到内存中，并将其放在运行时数据区的方法区内，然后在堆区建立一个这个类的java.lang.Class对象，用来封装类在方法区的对象。<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA.png" alt="cmd-markdown-logo"><br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/类加载堆区和方法区.png" alt="cmd-markdown-logo"></p>
+<p>类加载的最终产品是位于堆区的Class对象</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/06/02/Java类加载回顾/">Java类加载回顾</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
+        <p><span>发布时间:</span>2016-06-02, 12:17:56</p>
+        <p><span>最后更新:</span>2016-06-02, 12:47:30</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/02/Java类加载回顾/" title="Java类加载回顾">https://github.com/TsubasaBAKU/2016/06/02/Java类加载回顾/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/02/Java类加载回顾/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/06/01/JVM内存分析/">
+                    JVM内存分析
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/06/01/JVM内存分析/" class="archive-article-date">
-      <time datetime="2016-06-01T15:14:48.000Z" itemprop="datePublished">06-01</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/01/JVM内存分析/">JVM内存分析</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类加载过程"><span class="toc-number">1.</span> <span class="toc-text">类加载过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类的初始化"><span class="toc-number">2.</span> <span class="toc-text">类的初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类的加载"><span class="toc-number">3.</span> <span class="toc-text">类的加载</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Java类加载回顾　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/06/02/Java类加载回顾/" data-title="Java类加载回顾" data-url="https://github.com/TsubasaBAKU/2016/06/02/Java类加载回顾/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tsubasabaku"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/06/01/JVM内存分析/" title="下一篇: JVM内存分析">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-new">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/06/01/多线程回顾/" class="archive-article-date">
-      <time datetime="2016-06-01T02:18:31.000Z" itemprop="datePublished">06-01</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/01/多线程回顾/">多线程回顾</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
-    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/Java类加载回顾/">Java类加载回顾</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/JVM内存分析/">JVM内存分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/多线程回顾/">多线程回顾</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/Hibernate懒加载/">Hibernate懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/分页查询/">数据库分页查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/项目教学视频/">项目教学视频</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/ValueStack笔记/">ValueStack笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/OGNL表达式笔记/">OGNL表达式笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/Servlet笔记/">Servlet笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/ActionContext详解2/">ActionContext详解2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/ActionContext详解/">ActionContext详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/pageContext对象/">pageContext对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/request、session和application对象/">request、session和application对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Java验证码生成程序/">Java验证码生成程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Linux常用命令/">“linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/GitCommand/">GitCommand</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/struts2模型驱动/">struts2模型驱动</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/HibernateTemplate/">HibernateTemplate</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Hibernate三种查询方式/">Hibernate三种查询方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/java邮件发送/">java邮件发送</a></li></ul>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多线程/">多线程</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
