@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html >
+<head>
+  
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+  <meta charset="utf-8">
+  
+  <title>Java加密算法 | TsubasaBAKU</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="大体上分为双向加密和单向加密，而双向加密又分为对称加密和非对称加密。双向加密大体意思就是明文加密后形成密文，可以通过算法还原成明文。而单向加密只是对信息进行了摘要计算，不能通过算法生成明文。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java加密算法">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/02/Java加密算法/index.html">
+<meta property="og:site_name" content="TsubasaBAKU">
+<meta property="og:description" content="大体上分为双向加密和单向加密，而双向加密又分为对称加密和非对称加密。双向加密大体意思就是明文加密后形成密文，可以通过算法还原成明文。而单向加密只是对信息进行了摘要计算，不能通过算法生成明文。">
+<meta property="og:updated_time" content="2016-06-02T14:29:53.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java加密算法">
+<meta name="twitter:description" content="大体上分为双向加密和单向加密，而双向加密又分为对称加密和非对称加密。双向加密大体意思就是明文加密后形成密文，可以通过算法还原成明文。而单向加密只是对信息进行了摘要计算，不能通过算法生成明文。">
+  
+    <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">TsubasaBAKU</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Welcome to TsubasaBAKU&#39;s Page!</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/TsubasaBAKU@foxmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/TsubasaBAKU" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jsp/">Jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OGNL/">OGNL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueStack/">ValueStack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分页查询/">分页查询</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类加载/">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目视频/">项目视频</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Never too old to learn!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">TsubasaBAKU</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">TsubasaBAKU</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Welcome to TsubasaBAKU&#39;s Page!</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/TsubasaBAKU@foxmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/TsubasaBAKU" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="ew-Java加密算法" class="article article-type-ew" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/02/Java加密算法/" class="article-date">
+      <time datetime="2016-06-02T10:28:59.000Z" itemprop="datePublished">2016-06-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java加密算法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/加密算法/">加密算法</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>大体上分为双向加密和单向加密，而双向加密又分为对称加密和非对称加密。双向加密大体意思就是明文加密后形成密文，可以通过算法还原成明文。而单向加密只是对信息进行了摘要计算，不能通过算法生成明文。<br><a id="more"></a></p>
+<h1 id="双向加密"><a href="#双向加密" class="headerlink" title="双向加密"></a>双向加密</h1><h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><p>采用单钥密码系统的加密方法，同一个密钥可以同时用作信息的加密和解密，这种加密方式称为单向加密，也称为单密钥加密，需要对加密和解密使用相同密钥的加密算法。由于其速度，对称加密通常在消息发送方需要加密大量数据时使用。对称性加密也称为密钥加密。</p>
+<p>常用的对称加密有：DES、IDEA、RC2、RC4、SKIPJACK、RC5、AES算法等。</p>
+<p>对称加密一般类中定义成员：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//KeyGenerator提供对称密钥生成器的功能，支持各种算法</span></span><br><span class="line"><span class="keyword">private</span> KeyGenerator keygen;</span><br><span class="line">   <span class="comment">//Secret负责保存对称密钥</span></span><br><span class="line">   <span class="keyword">private</span> SecretKey deskey;</span><br><span class="line">   <span class="comment">//Cipher负责完成加密或解密工作</span></span><br><span class="line">   <span class="keyword">private</span> Cipher c;</span><br><span class="line">   <span class="comment">//该字节数组负责保存加密结果</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">byte</span>[] cipherByte;</span><br></pre></td></tr></table></figure></p>
+<p>在构造函数中初始化<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Security.addProvider(<span class="keyword">new</span> com.sun.crypto.provider.SunJCE());</span><br><span class="line">   <span class="comment">//实例化支持DES算法的密钥生成器（算法名称需要按规定，否则抛出异常）</span></span><br><span class="line">   keygen = KeygenGenerator.getInstance(<span class="string">"DES"</span>);</span><br><span class="line">   <span class="comment">//生成密钥</span></span><br><span class="line">   deskey = keygen.generateKey();</span><br><span class="line">   <span class="comment">//生成Cipher对象，指定其支持的DES算法</span></span><br><span class="line">   c = Cipher.getInstance(<span class="string">"DES"</span>);</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>DES算法为密码体制中的对称密码体制，又被称为美国数据加密标准。明文按64位进行分组，密钥长64位，密钥事实上是56位参与DES运算分组后的明文组和56位的密钥按位替代或及哦啊换的方法形成密文组的加密方法。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.security.InvalidKeyException;</span><br><span class="line"><span class="keyword">import</span> java.security.Security;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.BadPaddingException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.Cipher;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.IllegalBlockSizeException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.KeyGenerator;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.SecretKey;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EncrypDES</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//KeyGenerator提供对称密钥生成器的功能，支持各种算法</span></span><br><span class="line">	<span class="keyword">private</span> KeyGenerator keygen;</span><br><span class="line">	<span class="comment">//负责保存生产的密钥</span></span><br><span class="line">	<span class="keyword">private</span> SecretKey secretKey;</span><br><span class="line">	<span class="comment">//负责完成加密或者解密工作</span></span><br><span class="line">	<span class="keyword">private</span> Cipher cipher;</span><br><span class="line">	<span class="comment">//负责保存加密后的结果</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">byte</span>[] cipherByte;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> KeyGenerator <span class="title">getKeygen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> keygen;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setKeygen</span><span class="params">(KeyGenerator keygen)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.keygen = keygen;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> SecretKey <span class="title">getSecretKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> secretKey;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSecretKey</span><span class="params">(SecretKey secretKey)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.secretKey = secretKey;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Cipher <span class="title">getCipher</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> cipher;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCipher</span><span class="params">(Cipher cipher)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.cipher = cipher;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">byte</span>[] getCipherByte() &#123;</span><br><span class="line">		<span class="keyword">return</span> cipherByte;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCipherByte</span><span class="params">(<span class="keyword">byte</span>[] cipherByte)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.cipherByte = cipherByte;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EncrypDES</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		Security.addProvider(<span class="keyword">new</span> com.sun.crypto.provider.SunJCE());</span><br><span class="line">		<span class="comment">//实例化支持DES算法的密钥生成器</span></span><br><span class="line">		keygen = KeyGenerator.getInstance(<span class="string">"DES"</span>);</span><br><span class="line">		<span class="comment">//生成密钥</span></span><br><span class="line">		secretKey = keygen.generateKey();</span><br><span class="line">		<span class="comment">//指定Cipher支持的DWS算法</span></span><br><span class="line">		cipher = Cipher.getInstance(<span class="string">"DES"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 对字符串进行加密</span><br><span class="line">	 * <span class="doctag">@throws</span> InvalidKeyException </span><br><span class="line">	 * <span class="doctag">@throws</span> BadPaddingException </span><br><span class="line">	 * <span class="doctag">@throws</span> IllegalBlockSizeException </span><br><span class="line">	 * </span><br><span class="line">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">byte</span>[] Encryptor(String str) <span class="keyword">throws</span> InvalidKeyException, IllegalBlockSizeException, BadPaddingException&#123;</span><br><span class="line">		<span class="comment">//根据密钥，对Cipher对象进行初始化，ENCRYPT_MODE表示加密模式</span></span><br><span class="line">		cipher.init(Cipher.ENCRYPT_MODE, secretKey);</span><br><span class="line">		<span class="keyword">byte</span>[] src = str.getBytes();</span><br><span class="line">		<span class="comment">//加密，将结果存入cipherByte</span></span><br><span class="line">		cipherByte = cipher.doFinal(src);</span><br><span class="line">		<span class="keyword">return</span> cipherByte;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 对字符串解密</span><br><span class="line">	 * <span class="doctag">@throws</span> InvalidKeyException </span><br><span class="line">	 * <span class="doctag">@throws</span> BadPaddingException </span><br><span class="line">	 * <span class="doctag">@throws</span> IllegalBlockSizeException </span><br><span class="line">	 * </span><br><span class="line">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">byte</span>[] Decriptor(<span class="keyword">byte</span>[] buff) <span class="keyword">throws</span> InvalidKeyException, IllegalBlockSizeException, BadPaddingException&#123;</span><br><span class="line">		</span><br><span class="line">		cipher.init(Cipher.DECRYPT_MODE, secretKey);</span><br><span class="line">		cipherByte = cipher.doFinal(buff);</span><br><span class="line">		<span class="keyword">return</span> cipherByte;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		</span><br><span class="line">		EncrypDES del = <span class="keyword">new</span> EncrypDES();</span><br><span class="line">		String msg = <span class="string">"Tsubasa"</span>;</span><br><span class="line">		<span class="keyword">byte</span>[] encontent = del.Encryptor(msg);</span><br><span class="line">		<span class="keyword">byte</span>[] decontent = del.Decriptor(encontent);</span><br><span class="line">		System.out.println(<span class="string">"明文是："</span>+msg);</span><br><span class="line">		System.out.println(<span class="string">"加密后："</span>+<span class="keyword">new</span> String(encontent));</span><br><span class="line">		System.out.println(<span class="string">"解密后："</span>+<span class="keyword">new</span> String(decontent));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>3DES又称为Triple DES，是DES加密算法的一种模式。它使用3条56位的密钥对3DES数据进行三次加密，是DES一个更安全的变形。它以DES为基本模块，通过组合分组方法设计出分组加密算法。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.security.InvalidKeyException;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"><span class="keyword">import</span> java.security.Security;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.BadPaddingException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.Cipher;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.IllegalBlockSizeException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.KeyGenerator;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.NoSuchPaddingException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.SecretKey;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EncrypDES3</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> KeyGenerator keyGenerator;</span><br><span class="line">	<span class="keyword">private</span> SecretKey secretKey;</span><br><span class="line">	<span class="keyword">private</span> Cipher cipher;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">byte</span>[] cipherByte;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@SuppressWarnings</span>(<span class="string">"restriction"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EncrypDES3</span><span class="params">()</span> <span class="keyword">throws</span> NoSuchAlgorithmException, NoSuchPaddingException</span>&#123;</span><br><span class="line">		Security.addProvider(<span class="keyword">new</span> com.sun.crypto.provider.SunJCE());</span><br><span class="line">		keyGenerator = KeyGenerator.getInstance(<span class="string">"DESede"</span>);</span><br><span class="line">		secretKey = keyGenerator.generateKey();</span><br><span class="line">		cipher = Cipher.getInstance(<span class="string">"DESede"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">byte</span>[] Encryptor(String str) <span class="keyword">throws</span> InvalidKeyException, IllegalBlockSizeException, BadPaddingException&#123;</span><br><span class="line">		</span><br><span class="line">		cipher.init(Cipher.ENCRYPT_MODE, secretKey);</span><br><span class="line">		cipherByte = cipher.doFinal(str.getBytes());</span><br><span class="line">		<span class="keyword">return</span> cipherByte;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">byte</span>[] Decryptor(<span class="keyword">byte</span>[] msg) <span class="keyword">throws</span> IllegalBlockSizeException, BadPaddingException, InvalidKeyException&#123;</span><br><span class="line">		cipher.init(Cipher.DECRYPT_MODE, secretKey);</span><br><span class="line">		cipherByte = cipher.doFinal(msg);	</span><br><span class="line">		<span class="keyword">return</span> cipherByte;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException</span>&#123;</span><br><span class="line">		EncrypDES3 encrypDES3 = <span class="keyword">new</span> EncrypDES3();</span><br><span class="line">		String msg = <span class="string">"Tsubasa"</span>;</span><br><span class="line">		<span class="keyword">byte</span>[] secret = encrypDES3.Encryptor(msg);</span><br><span class="line">		<span class="keyword">byte</span>[] result = encrypDES3.Decryptor(secret);</span><br><span class="line">		System.out.println(<span class="string">"明文是："</span>+msg);</span><br><span class="line">		System.out.println(<span class="string">"密文是："</span>+<span class="keyword">new</span> String(secret));</span><br><span class="line">		System.out.println(<span class="string">"解密后："</span>+<span class="keyword">new</span> String(result));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p>1976年，美国学者为解决信息公开传送和密钥管理问题，提出一种新的密钥交换协议，允许在不安全的媒体上的通讯双方交换信息，安全的达成一致的密钥，这就是“公开密钥系统”。相对于“对称加密算法”，也叫“非对称加密算法”。非对称加密算法需要两个密钥：公开密钥和私有密钥。公钥和私钥是一对，如果用公钥对数据进行加密，只有对应的私钥才能解密；如果用私钥加密，只有用对应的公钥解密。因为公钥和私钥是两个不同的密钥，所以叫做非对称加密算法。</p>
+<ol>
+<li>RSA公钥加密算法是目前最具影响力的公钥加密算法，它能够抵抗到目前为止已知的所有密码攻击，已经被ISO推荐为公钥数据加密标准。RSA算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.security.InvalidKeyException;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyPair;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyPairGenerator;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"><span class="keyword">import</span> java.security.interfaces.RSAPrivateKey;</span><br><span class="line"><span class="keyword">import</span> java.security.interfaces.RSAPublicKey;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.BadPaddingException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.Cipher;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.IllegalBlockSizeException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.NoSuchPaddingException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EncrypRSA</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">byte</span>[] encrypt(RSAPublicKey publicKey,<span class="keyword">byte</span>[] srcBytes) <span class="keyword">throws</span> NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(publicKey != <span class="keyword">null</span>)&#123;</span><br><span class="line">			Cipher cipher = Cipher.getInstance(<span class="string">"RSA"</span>);</span><br><span class="line">			cipher.init(Cipher.ENCRYPT_MODE, publicKey);</span><br><span class="line">			<span class="keyword">byte</span>[] result = cipher.doFinal(srcBytes);</span><br><span class="line">			<span class="keyword">return</span> result;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">byte</span>[] decrypt(RSAPrivateKey privateKey,<span class="keyword">byte</span>[] srcBytes) <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(privateKey != <span class="keyword">null</span>)&#123;</span><br><span class="line">			Cipher cipher = Cipher.getInstance(<span class="string">"RSA"</span>);</span><br><span class="line">			cipher.init(Cipher.DECRYPT_MODE, privateKey);</span><br><span class="line">			<span class="keyword">byte</span>[] reslut = cipher.doFinal(srcBytes);</span><br><span class="line">			<span class="keyword">return</span> reslut;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		</span><br><span class="line">		EncrypRSA rsa = <span class="keyword">new</span> EncrypRSA();</span><br><span class="line">		String msg = <span class="string">"Tsubasa"</span>;</span><br><span class="line">		<span class="comment">//用于生成公钥和私钥对，基于RSA算法生成对象</span></span><br><span class="line">		KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(<span class="string">"RSA"</span>);</span><br><span class="line">		<span class="comment">//初始化密钥生成器对，密钥大小为1024位</span></span><br><span class="line">		keyPairGen.initialize(<span class="number">1024</span>);</span><br><span class="line">		<span class="comment">//生成一个密钥对，保存在keypair中</span></span><br><span class="line">		KeyPair keyPair = keyPairGen.generateKeyPair();</span><br><span class="line">		RSAPrivateKey rsaPrivateKey =(RSAPrivateKey) keyPair.getPrivate();</span><br><span class="line">		RSAPublicKey rsaPublicKey =(RSAPublicKey) keyPair.getPublic();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//用公钥加密</span></span><br><span class="line">		<span class="keyword">byte</span>[] srcBytes = msg.getBytes();</span><br><span class="line">		<span class="keyword">byte</span>[] resultBytes = rsa.encrypt(rsaPublicKey, srcBytes);</span><br><span class="line">		<span class="comment">//用私钥解密</span></span><br><span class="line">		<span class="keyword">byte</span>[] deBytes = rsa.decrypt(rsaPrivateKey, resultBytes);</span><br><span class="line">		System.out.println(<span class="string">"明文是："</span>+msg);</span><br><span class="line">		System.out.println(<span class="string">"密文是："</span>+<span class="keyword">new</span> String(resultBytes));</span><br><span class="line">		System.out.println(<span class="string">"解密后："</span>+<span class="keyword">new</span> String(deBytes));</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="单向加密"><a href="#单向加密" class="headerlink" title="单向加密"></a>单向加密</h1><ol>
+<li>MD5即Message-Digest Algorithm 5（信息摘要算法5），用于确保信息传输完整一致，，是计算机广泛使用的杂凑算法之一。MD5作用是让大容量信息在数字签名软件签署私人密钥前被“压缩”成一种保密的格式。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.security.MessageDigest;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EncrypMD5</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">byte</span>[] eccrpt(String info) <span class="keyword">throws</span> NoSuchAlgorithmException&#123;</span><br><span class="line">		MessageDigest md5 = MessageDigest.getInstance(<span class="string">"MD5"</span>);</span><br><span class="line">		<span class="keyword">byte</span>[] srcBytes = info.getBytes();</span><br><span class="line">		md5.update(srcBytes);</span><br><span class="line">		<span class="keyword">byte</span>[] result = md5.digest();</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchAlgorithmException</span>&#123;</span><br><span class="line">		String msg = <span class="string">"Tsubasa"</span>;</span><br><span class="line">		EncrypMD5 encrypMD5 = <span class="keyword">new</span> EncrypMD5();</span><br><span class="line">		<span class="keyword">byte</span>[] resultBytes = encrypMD5.eccrpt(msg);</span><br><span class="line">		System.out.println(<span class="string">"明文是："</span>+msg);</span><br><span class="line">		System.out.println(<span class="string">"密文是："</span>+<span class="keyword">new</span> String(resultBytes));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/06/02/Java加密算法/">Java加密算法</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
+        <p><span>发布时间:</span>2016-06-02, 18:28:59</p>
+        <p><span>最后更新:</span>2016-06-02, 22:29:53</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/02/Java加密算法/" title="Java加密算法">https://github.com/TsubasaBAKU/2016/06/02/Java加密算法/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/02/Java加密算法/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/06/02/Java类加载回顾/">
+                    Java类加载回顾
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#双向加密"><span class="toc-number">1.</span> <span class="toc-text">双向加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对称加密"><span class="toc-number">1.1.</span> <span class="toc-text">对称加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非对称加密"><span class="toc-number">1.2.</span> <span class="toc-text">非对称加密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单向加密"><span class="toc-number">2.</span> <span class="toc-text">单向加密</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Java加密算法　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/06/02/Java加密算法/" data-title="Java加密算法" data-url="https://github.com/TsubasaBAKU/2016/06/02/Java加密算法/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tsubasabaku"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/06/02/Java类加载回顾/" title="下一篇: Java类加载回顾">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/Java加密算法/">Java加密算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/Java类加载回顾/">Java类加载回顾</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/JVM内存分析/">JVM内存分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/多线程回顾/">多线程回顾</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/Hibernate懒加载/">Hibernate懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/29/分页查询/">数据库分页查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/项目教学视频/">项目教学视频</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/ValueStack笔记/">ValueStack笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/OGNL表达式笔记/">OGNL表达式笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/Servlet笔记/">Servlet笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/ActionContext详解2/">ActionContext详解2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/ActionContext详解/">ActionContext详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/26/pageContext对象/">pageContext对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/request、session和application对象/">request、session和application对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Java验证码生成程序/">Java验证码生成程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Linux常用命令/">“linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/GitCommand/">GitCommand</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/struts2模型驱动/">struts2模型驱动</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/HibernateTemplate/">HibernateTemplate</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/25/Hibernate三种查询方式/">Hibernate三种查询方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/java邮件发送/">java邮件发送</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 TsubasaBAKU
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
