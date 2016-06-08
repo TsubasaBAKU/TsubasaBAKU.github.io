@@ -9,34 +9,25 @@
 
   <meta charset="utf-8">
   
-  <title>java邮件发送 | TsubasaBAKU</title>
+  <title>硬盘基本知识 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.概述1.1 邮件发送和接收用到的协议
-SMTP:简单邮件传输协议（Simple Mail Transfer Protocol），属于TCP/IP协议簇，它是一组用于由源地址到目的地址传送邮件的规则。
-
-POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议簇，主要用于支持使用客户端远程管理在服务器上的电子邮件。">
+  <meta name="description" content="磁道、扇区、柱面和磁头数
+硬盘最基本的组成部分是由坚硬金属材料制成的涂以磁性介质的盘片，不同容量的硬盘盘片数量不等。每个盘片有两面，都可以记录信息。盘片被分成许多扇形的区域，每个区域叫一个扇区，每个扇区可存储1282的N次方（N=0 1 2 3）字节信息。在DOS中每个扇区是512个字节。盘片表面上，以盘片中心为圆心，不同半径的同心圆称为磁道，不同盘片的相同磁道组成柱面。每个磁盘有两个面，每个面都">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java邮件发送">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/05/24/java邮件发送/index.html">
+<meta property="og:title" content="硬盘基本知识">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/08/硬盘基本知识/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="1.概述1.1 邮件发送和接收用到的协议
-SMTP:简单邮件传输协议（Simple Mail Transfer Protocol），属于TCP/IP协议簇，它是一组用于由源地址到目的地址传送邮件的规则。
-
-POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议簇，主要用于支持使用客户端远程管理在服务器上的电子邮件。">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail4.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail5.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail6.png">
-<meta property="og:updated_time" content="2016-05-27T14:03:40.549Z">
+<meta property="og:description" content="磁道、扇区、柱面和磁头数
+硬盘最基本的组成部分是由坚硬金属材料制成的涂以磁性介质的盘片，不同容量的硬盘盘片数量不等。每个盘片有两面，都可以记录信息。盘片被分成许多扇形的区域，每个区域叫一个扇区，每个扇区可存储1282的N次方（N=0 1 2 3）字节信息。在DOS中每个扇区是512个字节。盘片表面上，以盘片中心为圆心，不同半径的同心圆称为磁道，不同盘片的相同磁道组成柱面。每个磁盘有两个面，每个面都">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware3.gif">
+<meta property="og:updated_time" content="2016-06-08T11:25:52.178Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java邮件发送">
-<meta name="twitter:description" content="1.概述1.1 邮件发送和接收用到的协议
-SMTP:简单邮件传输协议（Simple Mail Transfer Protocol），属于TCP/IP协议簇，它是一组用于由源地址到目的地址传送邮件的规则。
-
-POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议簇，主要用于支持使用客户端远程管理在服务器上的电子邮件。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail1.png">
+<meta name="twitter:title" content="硬盘基本知识">
+<meta name="twitter:description" content="磁道、扇区、柱面和磁头数
+硬盘最基本的组成部分是由坚硬金属材料制成的涂以磁性介质的盘片，不同容量的硬盘盘片数量不等。每个盘片有两面，都可以记录信息。盘片被分成许多扇形的区域，每个区域叫一个扇区，每个扇区可存储1282的N次方（N=0 1 2 3）字节信息。在DOS中每个扇区是512个字节。盘片表面上，以盘片中心为圆心，不同半径的同心圆称为磁道，不同盘片的相同磁道组成柱面。每个磁盘有两个面，每个面都">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -251,11 +242,11 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-java邮件发送" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-硬盘基本知识" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/24/java邮件发送/" class="article-date">
-      <time datetime="2016-05-24T12:16:20.000Z" itemprop="datePublished">2016-05-24</time>
+      <a href="/2016/06/08/硬盘基本知识/" class="article-date">
+      <time datetime="2016-06-08T10:57:10.000Z" itemprop="datePublished">2016-06-08</time>
 </a>
     </div>
   
@@ -268,7 +259,7 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
         
   
     <h1 class="article-title" itemprop="name">
-      java邮件发送
+      硬盘基本知识
     </h1>
   
 
@@ -277,13 +268,13 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a><a class="article-category-link" href="/categories/JAVA/编程功能模块/">编程功能模块</a>
+    <a class="article-category-link" href="/categories/ELSE/">ELSE</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/邮件/">邮件</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/硬盘/">硬盘</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -293,29 +284,13 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><h2 id="1-1-邮件发送和接收用到的协议"><a href="#1-1-邮件发送和接收用到的协议" class="headerlink" title="1.1 邮件发送和接收用到的协议"></a>1.1 邮件发送和接收用到的协议</h2><ul>
-<li><p>SMTP:简单邮件传输协议（Simple Mail Transfer Protocol），属于TCP/IP协议簇，它是一组用于由源地址到目的地址传送邮件的规则。</p>
-</li>
-<li><p>POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议簇，主要用于支持使用客户端远程管理在服务器上的电子邮件。</p>
-<a id="more"></a>
-<h2 id="1-2-邮件发送接收过程"><a href="#1-2-邮件发送接收过程" class="headerlink" title="1.2 邮件发送接收过程"></a>1.2 邮件发送接收过程</h2></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail1.png" alt="cmd-markdown-logo"></p>
-<h1 id="2-建立邮件服务器"><a href="#2-建立邮件服务器" class="headerlink" title="2.建立邮件服务器"></a>2.建立邮件服务器</h1><h2 id="2-1-软件安装"><a href="#2-1-软件安装" class="headerlink" title="2.1 软件安装"></a>2.1 软件安装</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们使用软件来作为邮件服务器。这里我们使用<a href="http://www.ymailsoft.com" target="_blank" rel="external">易邮</a>来作为邮件服务器。推荐安装在c盘，避免出现问题。软件安装完成后如图所示：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail2.png" alt="cmd-markdown-logo"></p>
-<h2 id="2-2-软件设置"><a href="#2-2-软件设置" class="headerlink" title="2.2 软件设置"></a>2.2 软件设置</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先点击菜单栏中的“工具”-“服务器设置”打开服务器设置窗口，在“单域名”中输入自己的域名，这里我输入“shop.com”。<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail3.png" alt="cmd-markdown-logo"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击菜单栏中的“账号”-“新建账号”，新建一个邮箱账号，并将这个账号作为发送邮件的账号，这里我们新建一个账号“service”，则邮箱名为“service@shop.com”。为了测试方便，我们新建一个接收邮件的账号“receive”，邮箱名为“receive@shop.com”。<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail4.png" alt="cmd-markdown-logo"></p>
-<p>至此，我们的邮件服务器搭建完成！</p>
-<h1 id="3-邮件客户端"><a href="#3-邮件客户端" class="headerlink" title="3 邮件客户端"></a>3 邮件客户端</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了能够接收邮件，我们需要使用一个邮件客户端，当然也可以直接使用网页版，但是为了方便本地测试，我们使用<a href="http://www.foxmail.com/" target="_blank" rel="external">foxmail客户端</a>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;软件的安装不再赘述，安装完成以后，点击菜单栏的“邮箱”-“新建邮箱账户”来新建一个邮箱账户，我们在这里将我们刚刚在服务器中设置的两个邮箱添加进来。<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail5.png" alt="cmd-markdown-logo"></p>
-<h1 id="4-Java程序编写"><a href="#4-Java程序编写" class="headerlink" title="4 Java程序编写"></a>4 Java程序编写</h1><p>在开始编写代码之前，我们需要引入两个jar包：activation.jar和mail.jar。<br>大致需要如下几个步骤：</p>
-<ul>
-<li>获得一个Session（javax.mail）对象</li>
-<li>创建一个代表邮件对象的Message</li>
-<li>发送邮件Transprot</li>
-</ul>
-<h2 id="4-1-创建Session对象"><a href="#4-1-创建Session对象" class="headerlink" title="4.1 创建Session对象"></a>4.1 创建Session对象</h2><p>创建session对象不能直接使用new关键字，需要调用Session的静态方法getInstance。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Properties props = <span class="keyword">new</span> Properties();</span><br><span class="line">props.setProperty(<span class="string">"mail.host"</span>, <span class="string">"localhost"</span>);</span><br><span class="line">Session session = Session.getInstance(props, <span class="keyword">new</span> Authenticator() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> PasswordAuthentication <span class="title">getPasswordAuthentication</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> PasswordAuthentication(<span class="string">"service@shop.com"</span>, <span class="string">"123"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<h2 id="4-2-创建message对象"><a href="#4-2-创建message对象" class="headerlink" title="4.2 创建message对象"></a>4.2 创建message对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Message message = <span class="keyword">new</span> MimeMessage(session);</span><br><span class="line">message.setFrom(<span class="keyword">new</span> InternetAddress(<span class="string">"service@shop.com"</span>));</span><br><span class="line">message.addRecipient(RecipientType.TO, <span class="keyword">new</span> InternetAddress(<span class="string">"receive@shop.com"</span>));</span><br><span class="line">message.setSubject(<span class="string">"来自service的一封邮件"</span>);</span><br><span class="line">message.setContent(<span class="string">"&lt;h1&gt;这是一封测试邮件&lt;/h1&gt;"</span>,<span class="string">"text/html;charset=UTF-8"</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="4-3-发送邮件"><a href="#4-3-发送邮件" class="headerlink" title="4.3 发送邮件"></a>4.3 发送邮件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Transport.send(message);</span><br></pre></td></tr></table></figure>
-<h1 id="5-测试"><a href="#5-测试" class="headerlink" title="5 测试"></a>5 测试</h1><p>运行程序，我们可以在foxmail客户端中看到如下效果：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/TsubasaBAKU.github.io/master/img/mail6.png" alt="cmd-markdown-logo"></p>
+        <h1 id="磁道、扇区、柱面和磁头数"><a href="#磁道、扇区、柱面和磁头数" class="headerlink" title="磁道、扇区、柱面和磁头数"></a>磁道、扇区、柱面和磁头数</h1><p><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware1.jpg" alt="cmd-markdown-logo"></p>
+<p>硬盘最基本的组成部分是由坚硬金属材料制成的涂以磁性介质的盘片，不同容量的硬盘盘片数量不等。每个盘片有两面，都可以记录信息。盘片被分成许多扇形的区域，每个区域叫一个扇区，每个扇区可存储128<em>2的N次方（N=0 1 2 3）字节信息。在DOS中每个扇区是512个字节。盘片表面上，以盘片中心为圆心，不同半径的同心圆称为磁道，不同盘片的相同磁道组成柱面。每个磁盘有两个面，每个面都有一个磁头，习惯用磁头号来区分。硬盘容量计算公式为：硬盘容量=磁头数</em>每个磁头的柱面<em>每个柱面的扇区</em>扇区容量。<br><a id="more"></a></p>
+<h2 id="磁道"><a href="#磁道" class="headerlink" title="磁道"></a>磁道</h2><p>当磁盘旋转时，磁头若保持在一个位置上，则每个磁头都会在圆盘上划一个圆形轨道，这些圆形轨道就叫做磁道。磁盘上的信息是沿着磁道存放的，相邻的磁道之间并不是紧挨着的，因为磁化单位太近了会互相产生影响，同时也为磁头的读写带来困难。<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware2.jpg" alt="cmd-markdown-logo"></p>
+<h2 id="扇区"><a href="#扇区" class="headerlink" title="扇区"></a>扇区</h2><p>磁盘上的每个磁道被分为若干个弧段，这些弧段便是扇区。每个扇区可以存放512个字节的信息，磁盘驱动器在向磁盘读写数据是都要以扇区为单位。</p>
+<h2 id="柱面"><a href="#柱面" class="headerlink" title="柱面"></a>柱面</h2><p>硬盘通常由重叠的一组盘片组成，每个盘片都被划分成数目相同的磁道，并从外缘0开始编号，具有相同编号的磁道形成一个圆柱，称之为柱面。磁盘的柱面数与一个盘面上的磁道数是相等的。<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware3.gif" alt="cmd-markdown-logo"></p>
+<h1 id="簇"><a href="#簇" class="headerlink" title="簇"></a>簇</h1><p>“簇”是DOS进行分配的最小单位。当创建一个很小的文件时，如是一个字节，则它在磁盘上并不是只占一个字节的空间，而是占有整个一簇。DOS视不同的存储介质（如软盘，硬盘），不同容量的硬盘，簇的大小也不一样。簇的大小可在称为磁盘参数块（BPB）中获取。簇的概念仅适用于数据区。<br>本点：<br>（1）“簇”是DOS进行分配的最小单位。<br>（2）不同的存储介质，不同容量的硬盘，不同的DOS版本，簇的大小也不一样。<br>（3）簇的概念仅适用于数据区。</p>
+<h1 id="扇区编号定义：绝对扇区与DOS扇区"><a href="#扇区编号定义：绝对扇区与DOS扇区" class="headerlink" title="扇区编号定义：绝对扇区与DOS扇区"></a>扇区编号定义：绝对扇区与DOS扇区</h1><p>由前面介绍可知，我们可以用柱面/磁头/扇区来唯一定位磁盘上每一个区域，或是说柱面/磁头/扇区与磁盘上每一个扇区有一一对应关系，通常DOS将“柱 面/磁头/扇区”这样表示法称为“绝对扇区”表示法。但DOS不能直接使用绝对扇区进行磁盘上的信息管理，而是用所谓“相对扇区”或“DOS扇区”。“相 对扇区”只是一个数字，如柱面140，磁头3，扇区4对应的相对扇区号为2757。该数字与绝对扇区“柱面/磁头/扇区”具有一一对应关系。当使用相对扇 区编号时，DOS是从柱面0，磁头1，扇区1开始（注：柱面0，磁头0，扇区1没有DOS扇区编号，DOS下不能访问，只能调用BIOS访问），第一个 DOS扇区编号为0，该磁道上剩余的扇区编号为1到16（设每磁道17个扇区），然后是磁头号为2，柱面为0的17个扇区，形成的DOS扇区号从17到 33。直到该柱面的所有磁头。然后再移到柱面1，磁头1，扇区1继续进行DOS扇区的编号，即按扇区号，磁头号，柱面号（磁道号）增长的顺序连续地分配 DOS扇区号。<br>公式：记DH－－第一个DOS扇区的磁头号<br>DC－－第一个DOS扇区的柱面号<br>DS－－第一个DOS扇区的扇区号<br>NS－－每磁道扇区数<br>NH－－磁盘总的磁头数<br>则某扇区（柱面C，磁头H，扇区S）的相对扇区号RS为：<br>RS＝NH×NS×（C－DC）＋NS×（H－DH）＋（S－DS）<br>若已知RS，DC，DH，DS，NS和NH则<br>S＝（RS　MOD　NS）＋DS<br>H＝（（RS　DIV　NS）MOD　NH）＋DH<br>C＝（（RS　DIV　NS）DIV　NH）＋DC<br>要点：（1）以柱面/磁头/扇区表示的为绝对扇区又称物理磁盘地址<br>（2）单一数字表示的为相对扇区或DOS扇区，又称逻辑扇区号<br>（3）相对扇区与绝对扇区的转换公式</p>
 
       
     </div>
@@ -324,13 +299,13 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/05/24/java邮件发送/">java邮件发送</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/08/硬盘基本知识/">硬盘基本知识</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
-        <p><span>发布时间:</span>2016-05-24, 20:16:20</p>
-        <p><span>最后更新:</span>2016-05-27, 22:03:40</p>
+        <p><span>发布时间:</span>2016-06-08, 18:57:10</p>
+        <p><span>最后更新:</span>2016-06-08, 19:25:52</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/05/24/java邮件发送/" title="java邮件发送">https://github.com/TsubasaBAKU/2016/05/24/java邮件发送/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/05/24/java邮件发送/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/08/硬盘基本知识/" title="硬盘基本知识">https://github.com/TsubasaBAKU/2016/06/08/硬盘基本知识/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/08/硬盘基本知识/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -342,12 +317,12 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/25/Hibernate三种查询方式/">
-                    Hibernate三种查询方式
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/06/02/Java加密算法/">
+                    Java加密算法
                 </a>
             </div>
-        
         
     </nav>
 
@@ -356,7 +331,7 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-概述"><span class="toc-number">1.</span> <span class="toc-text">1.概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-邮件发送和接收用到的协议"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 邮件发送和接收用到的协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-邮件发送接收过程"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 邮件发送接收过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-建立邮件服务器"><span class="toc-number">2.</span> <span class="toc-text">2.建立邮件服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-软件安装"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 软件安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-软件设置"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 软件设置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-邮件客户端"><span class="toc-number">3.</span> <span class="toc-text">3 邮件客户端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Java程序编写"><span class="toc-number">4.</span> <span class="toc-text">4 Java程序编写</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-创建Session对象"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 创建Session对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-创建message对象"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 创建message对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-发送邮件"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 发送邮件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-测试"><span class="toc-number">5.</span> <span class="toc-text">5 测试</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#磁道、扇区、柱面和磁头数"><span class="toc-number">1.</span> <span class="toc-text">磁道、扇区、柱面和磁头数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#磁道"><span class="toc-number">1.1.</span> <span class="toc-text">磁道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扇区"><span class="toc-number">1.2.</span> <span class="toc-text">扇区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#柱面"><span class="toc-number">1.3.</span> <span class="toc-text">柱面</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#簇"><span class="toc-number">2.</span> <span class="toc-text">簇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#扇区编号定义：绝对扇区与DOS扇区"><span class="toc-number">3.</span> <span class="toc-text">扇区编号定义：绝对扇区与DOS扇区</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -413,7 +388,7 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"java邮件发送　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"硬盘基本知识　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -429,7 +404,7 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/05/24/java邮件发送/" data-title="java邮件发送" data-url="https://github.com/TsubasaBAKU/2016/05/24/java邮件发送/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/08/硬盘基本知识/" data-title="硬盘基本知识" data-url="https://github.com/TsubasaBAKU/2016/06/08/硬盘基本知识/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -453,15 +428,15 @@ POP3：邮局协议（Post Office Protocol - Version 3），属于TCP/IP协议�
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/25/Hibernate三种查询方式/" title="上一篇: Hibernate三种查询方式">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2016/06/02/Java加密算法/" title="下一篇: Java加密算法">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 

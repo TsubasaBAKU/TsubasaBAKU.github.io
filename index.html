@@ -164,7 +164,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jsp/">Jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OGNL/">OGNL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueStack/">ValueStack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分页查询/">分页查询</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类加载/">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目视频/">项目视频</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jsp/">Jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OGNL/">OGNL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueStack/">ValueStack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分页查询/">分页查询</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬盘/">硬盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类加载/">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目视频/">项目视频</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
                     </div>
                 </section>
                 
@@ -240,6 +240,73 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-硬盘基本知识" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/08/硬盘基本知识/" class="article-date">
+      <time datetime="2016-06-08T10:57:10.000Z" itemprop="datePublished">2016-06-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/08/硬盘基本知识/">硬盘基本知识</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="磁道、扇区、柱面和磁头数"><a href="#磁道、扇区、柱面和磁头数" class="headerlink" title="磁道、扇区、柱面和磁头数"></a>磁道、扇区、柱面和磁头数</h1><p><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware1.jpg" alt="cmd-markdown-logo"></p>
+<p>硬盘最基本的组成部分是由坚硬金属材料制成的涂以磁性介质的盘片，不同容量的硬盘盘片数量不等。每个盘片有两面，都可以记录信息。盘片被分成许多扇形的区域，每个区域叫一个扇区，每个扇区可存储128<em>2的N次方（N=0 1 2 3）字节信息。在DOS中每个扇区是512个字节。盘片表面上，以盘片中心为圆心，不同半径的同心圆称为磁道，不同盘片的相同磁道组成柱面。每个磁盘有两个面，每个面都有一个磁头，习惯用磁头号来区分。硬盘容量计算公式为：硬盘容量=磁头数</em>每个磁头的柱面<em>每个柱面的扇区</em>扇区容量。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/ELSE/">ELSE</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/硬盘/">硬盘</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/06/08/硬盘基本知识/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="ew-Java加密算法" class="article article-type-ew" itemscope itemprop="blogPost">
   
@@ -816,68 +883,6 @@ password:uky2
       
         <p class="article-more-link">
           <a href="/2016/05/27/OGNL表达式笔记/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Servlet笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/27/Servlet笔记/" class="article-date">
-      <time datetime="2016-05-27T02:16:13.000Z" itemprop="datePublished">2016-05-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/27/Servlet笔记/">Servlet笔记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="1-Java服务器"><a href="#1-Java服务器" class="headerlink" title="1. Java服务器"></a>1. Java服务器</h1><h2 id="1-1-服务器概念"><a href="#1-1-服务器概念" class="headerlink" title="1.1 服务器概念"></a>1.1 服务器概念</h2><p>从软件功能上来讲，服务器指的就是能够提供服务的运行着的程序,即一个提供服务的进程。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/05/27/Servlet笔记/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
