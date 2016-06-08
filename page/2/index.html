@@ -164,7 +164,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jsp/">Jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OGNL/">OGNL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueStack/">ValueStack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分页查询/">分页查询</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬盘/">硬盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类加载/">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目视频/">项目视频</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jsp/">Jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OGNL/">OGNL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueStack/">ValueStack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分页查询/">分页查询</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬盘/">硬盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘分区/">磁盘分区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类加载/">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目视频/">项目视频</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
                     </div>
                 </section>
                 
@@ -240,6 +240,72 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-OGNL表达式笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/27/OGNL表达式笔记/" class="article-date">
+      <time datetime="2016-05-27T08:03:25.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/27/OGNL表达式笔记/">OGNL表达式笔记</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="OGNL"><a href="#OGNL" class="headerlink" title="OGNL"></a>OGNL</h1><p>OGNL是Struts2中使用的一种表达式语言，它可以用于JSP的标签库中，以便能够方便的访问各种对象的属性；它用于界面将参数传递到Action（并进行类型转换）中；它还可以用于struts2的配置文件中！所以，非常有必要理解OGNL的基本机制。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OGNL/">OGNL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/05/27/OGNL表达式笔记/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Servlet笔记" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -815,74 +881,6 @@
       
         <p class="article-more-link">
           <a href="/2016/05/25/struts2模型驱动/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-HibernateTemplate" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/25/HibernateTemplate/" class="article-date">
-      <time datetime="2016-05-24T16:01:47.000Z" itemprop="datePublished">2016-05-25</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/25/HibernateTemplate/">HibernateTemplate</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="1-getHibernateTemplate-与getSession-区别"><a href="#1-getHibernateTemplate-与getSession-区别" class="headerlink" title="1. getHibernateTemplate()与getSession()区别"></a>1. getHibernateTemplate()与getSession()区别</h1><ul>
-<li>使用getSession()方法需要sessionFactory，而使用getHibernateTemplate()方法需要继承HibernateDaoSupport，当然也包括 sessionFactory</li>
-<li>getSession()方法是没有经过Spring包装的，Spring会把最原始的session给你，在使用完之后必须自己调用相应的close()方法，而且也不会对声明式事务进行管理，一旦没有及时关闭连接，就会导致数据库连接池的连接数溢出。而getHibernateTemplate()方法是经过了Spring包装的，例如添加相应的声明式事务，由Spring管理相应的连接。
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SSH框架/">SSH框架</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/05/25/HibernateTemplate/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

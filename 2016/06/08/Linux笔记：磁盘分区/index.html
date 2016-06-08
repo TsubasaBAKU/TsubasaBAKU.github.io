@@ -9,18 +9,30 @@
 
   <meta charset="utf-8">
   
-  <title>struts2模型驱动 | TsubasaBAKU</title>
+  <title>Linux笔记：磁盘分区 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Struts2属性驱动Struts2的属性驱动指的是在action中的JSP页面的每一个form中的name都对应在action中的一个属性。有如下代码：1234&amp;lt;form action=&quot;register.do&quot; name=&quot;RegisterForm&quot; method=&quot;post&quot;&amp;gt;	Username:&amp;lt;input type=&quot;text&quot; name=&quot;uname&quot;&amp;gt;&amp;">
+  <meta name="description" content="磁盘组成复习盘面上可以分出扇区（Sector）与柱面（Cylinder）两种单位，其中每个扇区的大小为512个字节。第一个扇区特别重要，记录了两个重要信息：
+
+主引导分区（Master Boot Record，MBR）: 可以安装引导加载程序的地方，大小为446 bytes。
+分区表（partition table）：记录了整个硬盘的分区状态，大小为64 bytes。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="struts2模型驱动">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/05/25/struts2模型驱动/index.html">
+<meta property="og:title" content="Linux笔记：磁盘分区">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/08/Linux笔记：磁盘分区/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="1. Struts2属性驱动Struts2的属性驱动指的是在action中的JSP页面的每一个form中的name都对应在action中的一个属性。有如下代码：1234&amp;lt;form action=&quot;register.do&quot; name=&quot;RegisterForm&quot; method=&quot;post&quot;&amp;gt;	Username:&amp;lt;input type=&quot;text&quot; name=&quot;uname&quot;&amp;gt;&amp;">
-<meta property="og:updated_time" content="2016-05-27T14:03:40.557Z">
+<meta property="og:description" content="磁盘组成复习盘面上可以分出扇区（Sector）与柱面（Cylinder）两种单位，其中每个扇区的大小为512个字节。第一个扇区特别重要，记录了两个重要信息：
+
+主引导分区（Master Boot Record，MBR）: 可以安装引导加载程序的地方，大小为446 bytes。
+分区表（partition table）：记录了整个硬盘的分区状态，大小为64 bytes。">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%E8%A1%A8.png">
+<meta property="og:updated_time" content="2016-06-08T14:33:36.644Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="struts2模型驱动">
-<meta name="twitter:description" content="1. Struts2属性驱动Struts2的属性驱动指的是在action中的JSP页面的每一个form中的name都对应在action中的一个属性。有如下代码：1234&amp;lt;form action=&quot;register.do&quot; name=&quot;RegisterForm&quot; method=&quot;post&quot;&amp;gt;	Username:&amp;lt;input type=&quot;text&quot; name=&quot;uname&quot;&amp;gt;&amp;">
+<meta name="twitter:title" content="Linux笔记：磁盘分区">
+<meta name="twitter:description" content="磁盘组成复习盘面上可以分出扇区（Sector）与柱面（Cylinder）两种单位，其中每个扇区的大小为512个字节。第一个扇区特别重要，记录了两个重要信息：
+
+主引导分区（Master Boot Record，MBR）: 可以安装引导加载程序的地方，大小为446 bytes。
+分区表（partition table）：记录了整个硬盘的分区状态，大小为64 bytes。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8.png">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -235,11 +247,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-struts2模型驱动" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux笔记：磁盘分区" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/25/struts2模型驱动/" class="article-date">
-      <time datetime="2016-05-24T16:38:47.000Z" itemprop="datePublished">2016-05-25</time>
+      <a href="/2016/06/08/Linux笔记：磁盘分区/" class="article-date">
+      <time datetime="2016-06-08T13:27:39.000Z" itemprop="datePublished">2016-06-08</time>
 </a>
     </div>
   
@@ -252,7 +264,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      struts2模型驱动
+      Linux笔记：磁盘分区
     </h1>
   
 
@@ -261,13 +273,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a><a class="article-category-link" href="/categories/JAVA/SSH框架/">SSH框架</a>
+    <a class="article-category-link" href="/categories/LINUX/">LINUX</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/磁盘分区/">磁盘分区</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -277,17 +289,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="1-Struts2属性驱动"><a href="#1-Struts2属性驱动" class="headerlink" title="1. Struts2属性驱动"></a>1. Struts2属性驱动</h2><p>Struts2的属性驱动指的是在action中的JSP页面的每一个form中的name都对应在action中的一个属性。有如下代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"register.do"</span> <span class="attr">name</span>=<span class="string">"RegisterForm"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">	Username:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"uname"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    Password:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"upass"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>以上的表单中包含最基本的两个信息：用户名和密码。那么它对应的Action也要有这两个属性（其实是属性对应的setter方法）。看实际的Action定义类：<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegisterAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String uname;</span><br><span class="line">    <span class="keyword">private</span> String upass;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUname</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> uname;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUname</span><span class="params">(String uname)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.uname = uname;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUpass</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> upass;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUpass</span><span class="params">(String upass)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upass = upass;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ActionSupport.SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到RegisterAction的三个属性和Form中的name属性名字一样，这就是Struts2的属性驱动，Struts2会根据表单的name属性调用Action中的setter方法赋值。</p>
-<h2 id="2-模型驱动"><a href="#2-模型驱动" class="headerlink" title="2. 模型驱动"></a>2. 模型驱动</h2><p>在Struts2中，每一个Action需要提供一个POJO对象，用来封装表单属性，依旧有如下代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"register.do"</span> <span class="attr">name</span>=<span class="string">"RegisterForm"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">	Username:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"uname"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    Password:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"upass"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>下面是POJO代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String uname;</span><br><span class="line">    <span class="keyword">private</span> String upass;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUname</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> uname;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUname</span><span class="params">(String uname)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.uname = uname;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUpass</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> upass;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUpass</span><span class="params">(String upass)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upass = upass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其实就是一个普通的JavaBean。但是Action中代码就不一样了:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegisterAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> <span class="keyword">implements</span> <span class="title">ModelDriven</span>&lt;<span class="title">User</span>&gt;</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> User user;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUser</span><span class="params">(User user)</span></span>&#123;</span><br><span class="line">    	<span class="keyword">this</span>.user=user;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> ActionSupport.SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//模型驱动必须实现的方法，也是ModelDriven接口中唯一的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getModel</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><ul>
-<li>模型驱动中的Action必须实现ModelDriven接口，而且有泛型约束。</li>
-<li>实现ModelDriven的getModel方法，其实就是简单的返回一个对象。</li>
-<li>在Action中提供一个泛型的私有对象，Action就会自动去调用setter方法将表单中name的属性值赋值给相应属性，而Action的后续处理的JSP页面或者是Servlet就可以使用User对象了。</li>
+        <h1 id="磁盘组成复习"><a href="#磁盘组成复习" class="headerlink" title="磁盘组成复习"></a>磁盘组成复习</h1><p>盘面上可以分出扇区（Sector）与柱面（Cylinder）两种单位，其中每个扇区的大小为512个字节。第一个扇区特别重要，记录了两个重要信息：</p>
+<ul>
+<li>主引导分区（Master Boot Record，MBR）: 可以安装引导加载程序的地方，大小为446 bytes。</li>
+<li>分区表（partition table）：记录了整个硬盘的分区状态，大小为64 bytes。<a id="more"></a>
+</li>
 </ul>
+<h1 id="磁盘分区表（Partition-Table）"><a href="#磁盘分区表（Partition-Table）" class="headerlink" title="磁盘分区表（Partition Table）"></a>磁盘分区表（Partition Table）</h1><p>利用参考柱面号码的方式来处理。在分区表中的64 bytes容量中，总共被分为四个区，每组区记录了该区的开始与结束柱面的号码。如下图：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8.png" alt="cmd-markdown-logo"><br>假设上图中的设备文件名为/dev/hda,那么这四个分区在Linux系统中的设备文件名分别为:<br>P1: /dev/hda1<br>P2: /dev/hda2<br>P3: /dev/hda3<br>p4: /dev/hda4<br>当有数据要写入P4分区中时，其实就是写入了301~400之间的柱面中。</p>
+<p><strong>由于分区表只有64 bytes，所以最多只能分为四个分区，而这四个分区又被区分为主分区（Primary）和扩展分区（Extended）。</strong></p>
+<p>我们可以得到以下四点重要的信息：<br><strong>1. 其实所谓的“分区”，只是对分区表进行了设置而已。</strong><br><strong>2. 分区表默认最多写入四组分区信息</strong><br><strong>3. 四组分区又被分为主分区和扩展分区</strong><br><strong>4. 分区的最小单位是柱面</strong></p>
+<h1 id="逻辑分区"><a href="#逻辑分区" class="headerlink" title="逻辑分区"></a>逻辑分区</h1><p>如上所说，分区表内默认最多只能写入四组分区信息，又被区分为主分区和扩展分区。然而在平时的使用中，我们使用的远远不止四个分区，这是为什么呢？<br>首先，我们需要指出的是：扩展分区的想法就是，既然第一个扇区的分区表中只能写入四组分区信息，那么是否可以利用其它扇区来记录分区信息呢？实际上这就是扩展分区的目的，扩展分区就是利用额外的扇区来记录分区信息，而扩展分区本身不能被拿来格式化，于是就有了逻辑分区。<br><strong>逻辑分区（Logical partition）：由扩展分区分割而得来的分区。</strong>如下图：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%E8%A1%A8.png" alt="cmd-markdown-logo"><br>在上图中，第一个扇区中分区表中只有两组信息：一个主分区（1~100）和一个扩展分区（101~400）。而在扩展分区的分区记录表中，又有五条逻辑分区的记录，说明扩展分区被划分成了五个逻辑分区。那么这几个分区在Linux系统中设备文件的名称分别为：<br>P1: /dev/hda1<br>P2: /dev/hda2<br>L1: /dev/hda5<br>L2: /dev/hda6<br>L3: /dev/hda7<br>L4: /dev/hda8<br>L5: /dev/hda9<br><strong>那么hda3和hda4呢？这是由于前四个号码都是保留个Primary或者Extended用的，所以逻辑分区的编号就从5开始了，这是个很重要的特性。</strong></p>
+<p>我们在这里做个简单的定义：<br><strong>1. 主分区加扩展分区最多只能有四个（硬盘限制）。</strong><br><strong>2. 扩展分区最多只能有一个（操作系统限制）。</strong><br><strong>3. 能够被格式化后作为数据访问的分区是主分区和逻辑分区，扩展分区不能被格式化。</strong></p>
 
       
     </div>
@@ -296,13 +308,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/05/25/struts2模型驱动/">struts2模型驱动</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/08/Linux笔记：磁盘分区/">Linux笔记：磁盘分区</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
-        <p><span>发布时间:</span>2016-05-25, 00:38:47</p>
-        <p><span>最后更新:</span>2016-05-27, 22:03:40</p>
+        <p><span>发布时间:</span>2016-06-08, 21:27:39</p>
+        <p><span>最后更新:</span>2016-06-08, 22:33:36</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/05/25/struts2模型驱动/" title="struts2模型驱动">https://github.com/TsubasaBAKU/2016/05/25/struts2模型驱动/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/05/25/struts2模型驱动/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/08/Linux笔记：磁盘分区/" title="Linux笔记：磁盘分区">https://github.com/TsubasaBAKU/2016/06/08/Linux笔记：磁盘分区/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/08/Linux笔记：磁盘分区/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -314,16 +326,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/25/GitCommand/">
-                    GitCommand
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/05/25/HibernateTemplate/">
-                    HibernateTemplate
+                <a href="/2016/06/08/硬盘基本知识/">
+                    硬盘基本知识
                 </a>
             </div>
         
@@ -334,7 +340,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Struts2属性驱动"><span class="toc-number">1.</span> <span class="toc-text">1. Struts2属性驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-模型驱动"><span class="toc-number">2.</span> <span class="toc-text">2. 模型驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-总结"><span class="toc-number">3.</span> <span class="toc-text">3. 总结</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#磁盘组成复习"><span class="toc-number">1.</span> <span class="toc-text">磁盘组成复习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#磁盘分区表（Partition-Table）"><span class="toc-number">2.</span> <span class="toc-text">磁盘分区表（Partition Table）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#逻辑分区"><span class="toc-number">3.</span> <span class="toc-text">逻辑分区</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -391,7 +397,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"struts2模型驱动　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Linux笔记：磁盘分区　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -407,7 +413,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/05/25/struts2模型驱动/" data-title="struts2模型驱动" data-url="https://github.com/TsubasaBAKU/2016/05/25/struts2模型驱动/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/08/Linux笔记：磁盘分区/" data-title="Linux笔记：磁盘分区" data-url="https://github.com/TsubasaBAKU/2016/06/08/Linux笔记：磁盘分区/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -431,15 +437,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/25/GitCommand/" title="上一篇: GitCommand">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/05/25/HibernateTemplate/" title="下一篇: HibernateTemplate">
+            <a href="/2016/06/08/硬盘基本知识/" title="下一篇: 硬盘基本知识">
                 <i class="fa fa-angle-right"></i>
             </a>
         
