@@ -164,7 +164,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jsp/">Jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OGNL/">OGNL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueStack/">ValueStack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分页查询/">分页查询</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬盘/">硬盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘分区/">磁盘分区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类加载/">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目视频/">项目视频</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jsp/">Jsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OGNL/">OGNL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueStack/">ValueStack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分页查询/">分页查询</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密算法/">加密算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开机流程/">开机流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬盘/">硬盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘分区/">磁盘分区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类加载/">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目视频/">项目视频</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/验证码/">验证码</a></li></ul>
                     </div>
                 </section>
                 
@@ -240,6 +240,144 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Linux笔记：文件权限" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/11/Linux笔记：文件权限/" class="article-date">
+      <time datetime="2016-06-11T12:23:07.000Z" itemprop="datePublished">2016-06-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/11/Linux笔记：文件权限/">Linux笔记：文件权限</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="文件所有者，用户组，其他人"><a href="#文件所有者，用户组，其他人" class="headerlink" title="文件所有者，用户组，其他人"></a>文件所有者，用户组，其他人</h1><p>首先应该明白这三个概念，简单的解释下：</p>
+<ol>
+<li>文件所有者：即文件的所属人，文件属于哪个用户。</li>
+<li>用户组： 一组用户，该组中的用户对于某个文件具有相同的权限。</li>
+<li>其他人：非用户组的其它用户。</li>
+</ol>
+<p><strong>这里需要注意的一点就是，同一个用户可以属于多个不同的用户组。</strong><br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/LINUX/">LINUX</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件权限/">文件权限</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/06/11/Linux笔记：文件权限/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Linux笔记：开机流程与主要启动记录区MBR" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/" class="article-date">
+      <time datetime="2016-06-08T15:26:41.000Z" itemprop="datePublished">2016-06-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/">Linux笔记：开机流程与主要启动记录区MBR</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="开机流程"><a href="#开机流程" class="headerlink" title="开机流程"></a>开机流程</h1><p>这里我们需要首先提出一个概念：BIOS。BIOS是写在计算机主板上的一个韧体（韧体就是写入硬件的软件程序），BIOS就是在启动的时候，计算机主动执行的第一个程序了。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/LINUX/">LINUX</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开机流程/">开机流程</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Linux笔记：磁盘分区" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -757,135 +895,6 @@
       
         <p class="article-more-link">
           <a href="/2016/05/29/分页查询/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-项目教学视频" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/27/项目教学视频/" class="article-date">
-      <time datetime="2016-05-27T13:26:31.000Z" itemprop="datePublished">2016-05-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/27/项目教学视频/">项目教学视频</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <pre><code>URL:http://pan.baidu.com/s/1geWweBL
-password:uky2
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/项目视频/">项目视频</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-ValueStack笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/27/ValueStack笔记/" class="article-date">
-      <time datetime="2016-05-27T09:04:50.000Z" itemprop="datePublished">2016-05-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/27/ValueStack笔记/">ValueStack笔记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="ValueStack"><a href="#ValueStack" class="headerlink" title="ValueStack"></a>ValueStack</h1><p>ValueStack实际上就是对OGNL的封装，Struts2正是通过ValueStack来进行赋值和取值的！<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ValueStack/">ValueStack</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/05/27/ValueStack笔记/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

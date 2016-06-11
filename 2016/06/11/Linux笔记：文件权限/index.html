@@ -9,18 +9,38 @@
 
   <meta charset="utf-8">
   
-  <title>ActionContext详解 | TsubasaBAKU</title>
+  <title>Linux笔记：文件权限 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ActionContextActionContext是Action的上下文，Struts2自动在其中保存了一些在Action执行过程中所需的对象，比如session, parameters, locale等。Struts2会根据每个执行HTTP请求的线程来创建对应的ActionContext，即一个线程有一个唯一的ActionContext。因此，使用者可以使用静态方法ActionContext.">
+  <meta name="description" content="文件所有者，用户组，其他人首先应该明白这三个概念，简单的解释下：
+
+文件所有者：即文件的所属人，文件属于哪个用户。
+用户组： 一组用户，该组中的用户对于某个文件具有相同的权限。
+其他人：非用户组的其它用户。
+
+这里需要注意的一点就是，同一个用户可以属于多个不同的用户组。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ActionContext详解">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解/index.html">
+<meta property="og:title" content="Linux笔记：文件权限">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/11/Linux笔记：文件权限/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="ActionContextActionContext是Action的上下文，Struts2自动在其中保存了一些在Action执行过程中所需的对象，比如session, parameters, locale等。Struts2会根据每个执行HTTP请求的线程来创建对应的ActionContext，即一个线程有一个唯一的ActionContext。因此，使用者可以使用静态方法ActionContext.">
-<meta property="og:updated_time" content="2016-05-27T14:03:40.440Z">
+<meta property="og:description" content="文件所有者，用户组，其他人首先应该明白这三个概念，简单的解释下：
+
+文件所有者：即文件的所属人，文件属于哪个用户。
+用户组： 一组用户，该组中的用户对于某个文件具有相同的权限。
+其他人：非用户组的其它用户。
+
+这里需要注意的一点就是，同一个用户可以属于多个不同的用户组。">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/Linux%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7.png">
+<meta property="og:updated_time" content="2016-06-11T13:26:49.970Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ActionContext详解">
-<meta name="twitter:description" content="ActionContextActionContext是Action的上下文，Struts2自动在其中保存了一些在Action执行过程中所需的对象，比如session, parameters, locale等。Struts2会根据每个执行HTTP请求的线程来创建对应的ActionContext，即一个线程有一个唯一的ActionContext。因此，使用者可以使用静态方法ActionContext.">
+<meta name="twitter:title" content="Linux笔记：文件权限">
+<meta name="twitter:description" content="文件所有者，用户组，其他人首先应该明白这三个概念，简单的解释下：
+
+文件所有者：即文件的所属人，文件属于哪个用户。
+用户组： 一组用户，该组中的用户对于某个文件具有相同的权限。
+其他人：非用户组的其它用户。
+
+这里需要注意的一点就是，同一个用户可以属于多个不同的用户组。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/Linux%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7.png">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -235,11 +255,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-ActionContext详解" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux笔记：文件权限" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/26/ActionContext详解/" class="article-date">
-      <time datetime="2016-05-25T17:15:57.000Z" itemprop="datePublished">2016-05-26</time>
+      <a href="/2016/06/11/Linux笔记：文件权限/" class="article-date">
+      <time datetime="2016-06-11T12:23:07.000Z" itemprop="datePublished">2016-06-11</time>
 </a>
     </div>
   
@@ -252,7 +272,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ActionContext详解
+      Linux笔记：文件权限
     </h1>
   
 
@@ -260,10 +280,14 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/LINUX/">LINUX</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件权限/">文件权限</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -273,23 +297,75 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="ActionContext"><a href="#ActionContext" class="headerlink" title="ActionContext"></a>ActionContext</h2><p>ActionContext是Action的上下文，Struts2自动在其中保存了一些在Action执行过程中所需的对象，比如session, parameters, locale等。Struts2会根据每个执行HTTP请求的线程来创建对应的ActionContext，即一个线程有一个唯一的ActionContext。因此，使用者可以使用静态方法ActionContext.getContext()来获取当前线程的ActionContext，也正是由于这个原因，使用者不用去操心让Action是线程安全的。</p>
-<a id="more"></a>
-<p>无论如何，ActionContext都是用来存放数据的。Struts2本身会在其中放入不少数据，而使用者也可以放入自己想要的数据。ActionContext本身的数据结构是映射结构，即一个Map，用key来映射value。所以使用者完全可以像使用Map一样来使用它，或者直接使用Action.getContextMap()方法来对Map进行操作。</p>
-<p>Struts2本身在其中放入的数据有ActionInvocation、application（即ServletContext）、conversionErrors、Locale、action的name、request的参数、HTTP的Session以及值栈等。完整的列表请参考它的Javadoc。</p>
-<p>由于ActionContext的线程唯一和静态方法就能获得的特性，使得在非Action类中可以直接获得它，而不需要等待Action传入或注入。需要注意的是，它仅在由于request而创建的线程中有效（因为request时才创建对应的ActionContext），而在服务器启动的线程中（比如fliter的init方法）无效。由于在非Action类中访问其的方便性，ActionContext也可以用来在非Action类中向JSP传递数据（因为JSP也能很方便的访问它）。</p>
-<h2 id="ValueStack与ActionContext的联系和区别："><a href="#ValueStack与ActionContext的联系和区别：" class="headerlink" title="ValueStack与ActionContext的联系和区别："></a>ValueStack与ActionContext的联系和区别：</h2><p>相同点：它们都是在一次HTTP请求的范围内使用的，即它们的生命周期都是一次请求。</p>
-<p>不同点：值栈是栈的结构，ActionContext是映射（Map）的结构。</p>
-<p>联系：ValueStack.getContext()方法得到的Map其实就是ActionContext的Map。查看Struts2的源代码可知（Struts2.3.1.2的org.apache.struts2.dispatcher.ng.PrepareOperations的第79行，createActionContext方法），在创建ActionContext时，就是把ValueStack.getContext()作为ActionContext的构造函数的参数。所以，ValueStack和ActionContext本质上可以互相获得。</p>
-<p>注意：在一些文档中，会出现把对象存入“stack‘s context”的字样，其实就是把值存入了ActionContext。所以在阅读这些文档时，要看清楚，到底是放入了栈结构（即值栈），还是映射结构（值栈的context，即ActionContext）。</p>
-<h2 id="如何获得ActionContext："><a href="#如何获得ActionContext：" class="headerlink" title="如何获得ActionContext："></a>如何获得ActionContext：</h2><p>在自定义的拦截器中：使用ActionInvocation.getInvocationContext()或者使用ActionContext.getContext()。</p>
-<p>在Action类中：让拦截器注入或者使用ActionContext.getContext()。</p>
-<p>在非Action类中：让Action类传递参数、使用注入机制注入或者使用ActionContext.getContext()。注意：只有运行在request线程中的代码才能调用ActionContext.getContext()，否则返回的是null。</p>
-<p>在JSP中：一般不需要获得ActionContext本身。</p>
-<h2 id="如何向ActionContext中存入值："><a href="#如何向ActionContext中存入值：" class="headerlink" title="如何向ActionContext中存入值："></a>如何向ActionContext中存入值：</h2><p>在拦截器、Action类、非Action类等Java类中：使用ActionContext.put(Object key, Object value)方法。<br>在JSP中：标签&lt; s:set value=”…”/&gt;默认将值存入ActionContext中（当然，&lt; s:set&gt;标签还可以把值存到其他地方）。另外，许多标签都有var属性（以前用的是id属性，现在id属性已被弃用），这个属性能向ActionContext存入值，key为var属性的值，value为标签的value属性的值。（有些文档写的是向ValueStack的context存入值，其实是一样的）</p>
-<h2 id="如何从ActionContext中读取值："><a href="#如何从ActionContext中读取值：" class="headerlink" title="如何从ActionContext中读取值："></a>如何从ActionContext中读取值：</h2><p>在拦截器、Action类、非Action类等Java类中：使用ActionContext.get(Object key)方法。</p>
-<p>在JSP中：使用#开头的Ognl表达式，比如&lt; s:property value=” #name”/&gt;会调用ActionContext.get( “name”)方法。注意：如果某标签的属性默认不作为Ognl表达式解析，则需要使用 %{ }把表达式括起来，于是就会出现类似”% { # name } “的表达式 。</p>
-<p>总之，在JSP中使用ActionContext一方面是由于它是映射结构，另一方面是能读取Action的一些配置。当你需要为许多Action提供通用的值的话，可以让每个Action都提供getXXX()方法，但更好的方法是在拦截器或JSP模板中把这些通用的值存放到ActionContext中（因为拦截器或JSP模板往往通用于多个Action）。</p>
+        <h1 id="文件所有者，用户组，其他人"><a href="#文件所有者，用户组，其他人" class="headerlink" title="文件所有者，用户组，其他人"></a>文件所有者，用户组，其他人</h1><p>首先应该明白这三个概念，简单的解释下：</p>
+<ol>
+<li>文件所有者：即文件的所属人，文件属于哪个用户。</li>
+<li>用户组： 一组用户，该组中的用户对于某个文件具有相同的权限。</li>
+<li>其他人：非用户组的其它用户。</li>
+</ol>
+<p><strong>这里需要注意的一点就是，同一个用户可以属于多个不同的用户组。</strong><br><a id="more"></a></p>
+<h1 id="Linux文件权限"><a href="#Linux文件权限" class="headerlink" title="Linux文件权限"></a>Linux文件权限</h1><h2 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h2><p>这里我们以root身份登录Linux系统，执行“ls -al”命令，可看到下图：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/Linux%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7.png" alt="cmd-markdown-logo"><br>我们以其中的一条记录来做较详细的解释：</p>
+<blockquote>
+<p> -rw-r–r– 1 root root 176 Jan 6 2007 .bashrc</p>
+</blockquote>
+<p>-rw-r–r–代表的是文件的类型和权限。<br>第一个字符代表的是文件的类型，即这个文件是目录，普通文件，链接文件或者其他等。</p>
+<ul>
+<li>若第一个字符是d，则代表该文件是一个目录</li>
+<li>若第一个字符是-，则代表该文件是一个普通文件</li>
+<li>若是l，则代表该文件是一个链接文件</li>
+<li>若是b，则代表设备文件里的可供存储的接口设备</li>
+<li>若是c，则代表设备文件里的串行端口设备，例如键盘鼠标等</li>
+</ul>
+<p>接下来的字符以三个为一组，分别代表文件所有者的权限，所属用户组的权限，其它人的权限</p>
+<ul>
+<li>r：代表可读权限</li>
+<li>w：代表可写权限</li>
+<li>x：代表可执行权限</li>
+</ul>
+<p>根据以上描述，可得出rw-代表可读和可写权限，不包括可执行的权限。</p>
+<p>紧接着“1”代表有多少个文件名连接到此节点。每个文件都会将它的权限与属性记录到文件系统的i-node中，不过我们使用的目录树却是使用文件名来记录，因此每个文件名就会连接到一个i-node。这个属性就是记录有多少个不同的文件名连接到一个相同的i-node号码。</p>
+<p>紧接着的“root”代表当前文件所属的用户是root，跟以上所述，root对该文件的权限是rw-。</p>
+<p>第二个“root”代表着文件所属者root所在的用户组是root，该用户组中的用户对该文件的权限是r–。</p>
+<p>紧接着“176”代表文件大小，单位是B。</p>
+<p>最后的两组数据就一目了然了，分别代表文件最后修改时间和文件名。</p>
+<p><strong>注意：所有以“.”开头的文件都是隐藏文件，使用ls命令不显示隐藏文件。</strong></p>
+<h1 id="三个命令"><a href="#三个命令" class="headerlink" title="三个命令"></a>三个命令</h1><ul>
+<li>chgrp：改变用户所属的用户组。</li>
+<li>chown：改变文件所属者。</li>
+<li>chmod：改变文件权限。</li>
+</ul>
+<p>前两个命令十分简单，比如chgrp users install.log即将install.log文件的用户组改为users，chown aa install.log即将install.log的所有者改为aa这个用户。</p>
+<p>我们来重点看下第三个命令，chmod改变用户权限。<br>改变文件权限的方式有两种：使用数字或者使用符号。</p>
+<h2 id="使用数字改变文件权限"><a href="#使用数字改变文件权限" class="headerlink" title="使用数字改变文件权限"></a>使用数字改变文件权限</h2><p>我们使用数字来代表各个权限，分别是</p>
+<ul>
+<li>r：4</li>
+<li>w：2</li>
+<li>x：1</li>
+</ul>
+<p>每种身份的权限是需要累加的，比如-rwxwrx—：</p>
+<ul>
+<li>owner=4+2+1=7</li>
+<li>group=4+2+1=7</li>
+<li>others=0</li>
+</ul>
+<p>假设我们需要把.bashrc这个文件的权限改为-rwxrwxrwx，则我们使用chmod的用法为：</p>
+<ul>
+<li>chmod 777 .bashrc</li>
+</ul>
+<h2 id="使用符号来改变文件权限"><a href="#使用符号来改变文件权限" class="headerlink" title="使用符号来改变文件权限"></a>使用符号来改变文件权限</h2><p>我们使用u，g，o来代表user，group，other身份的权限，a代表全部身份，现在假设我们需要把.bashrc文件改为当前用户有所有权限，用户组和其他人只有读和执行权限，那么我们使用chmod的用法为：</p>
+<ul>
+<li>chmod u=rwx,go=rx .bashrc</li>
+</ul>
+<h1 id="权限对目录以及文件的意义"><a href="#权限对目录以及文件的意义" class="headerlink" title="权限对目录以及文件的意义"></a>权限对目录以及文件的意义</h1><h2 id="权限对文件的意义"><a href="#权限对文件的意义" class="headerlink" title="权限对文件的意义"></a>权限对文件的意义</h2><ol>
+<li>r：可读取文件的实际内容，即读取文本文件的文字内容等。</li>
+<li>w：可以编辑，新增或者是修改该文件的内容，但不含删除该文件。</li>
+<li>x：该文件具有被系统执行的权限。LInux中，文件能否被执行是由是否具有“x”权限来决定的，跟文件名没有绝对的关系。</li>
+</ol>
+<h2 id="权限对目录的意义"><a href="#权限对目录的意义" class="headerlink" title="权限对目录的意义"></a>权限对目录的意义</h2><ol>
+<li>r：具有读取目录结构列表的权限，可以利用ls来将该目录的结构列表显示出来。</li>
+<li>w：具有更改该目录结构列表的权限：新建文件与目录，删除文件与目录，重命名文件与目录，转移该目录内的文件或者目录位置。</li>
+<li>x：代表用户是否能进入该目录称为工作目录，工作目录就是用户目前所在的怒路。</li>
+</ol>
 
       
     </div>
@@ -298,13 +374,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/05/26/ActionContext详解/">ActionContext详解</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/11/Linux笔记：文件权限/">Linux笔记：文件权限</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
-        <p><span>发布时间:</span>2016-05-26, 01:15:57</p>
-        <p><span>最后更新:</span>2016-05-27, 22:03:40</p>
+        <p><span>发布时间:</span>2016-06-11, 20:23:07</p>
+        <p><span>最后更新:</span>2016-06-11, 21:26:49</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/05/26/ActionContext详解/" title="ActionContext详解">https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/11/Linux笔记：文件权限/" title="Linux笔记：文件权限">https://github.com/TsubasaBAKU/2016/06/11/Linux笔记：文件权限/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/11/Linux笔记：文件权限/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -316,16 +392,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/26/ActionContext详解2/">
-                    ActionContext详解2
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/05/26/pageContext对象/">
-                    pageContext对象
+                <a href="/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/">
+                    Linux笔记：开机流程与主要启动记录区MBR
                 </a>
             </div>
         
@@ -336,7 +406,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ActionContext"><span class="toc-number">1.</span> <span class="toc-text">ActionContext</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ValueStack与ActionContext的联系和区别："><span class="toc-number">2.</span> <span class="toc-text">ValueStack与ActionContext的联系和区别：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何获得ActionContext："><span class="toc-number">3.</span> <span class="toc-text">如何获得ActionContext：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何向ActionContext中存入值："><span class="toc-number">4.</span> <span class="toc-text">如何向ActionContext中存入值：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何从ActionContext中读取值："><span class="toc-number">5.</span> <span class="toc-text">如何从ActionContext中读取值：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#文件所有者，用户组，其他人"><span class="toc-number">1.</span> <span class="toc-text">文件所有者，用户组，其他人</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux文件权限"><span class="toc-number">2.</span> <span class="toc-text">Linux文件权限</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件属性"><span class="toc-number">2.1.</span> <span class="toc-text">文件属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三个命令"><span class="toc-number">3.</span> <span class="toc-text">三个命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用数字改变文件权限"><span class="toc-number">3.1.</span> <span class="toc-text">使用数字改变文件权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用符号来改变文件权限"><span class="toc-number">3.2.</span> <span class="toc-text">使用符号来改变文件权限</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#权限对目录以及文件的意义"><span class="toc-number">4.</span> <span class="toc-text">权限对目录以及文件的意义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#权限对文件的意义"><span class="toc-number">4.1.</span> <span class="toc-text">权限对文件的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#权限对目录的意义"><span class="toc-number">4.2.</span> <span class="toc-text">权限对目录的意义</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -393,7 +463,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"ActionContext详解　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Linux笔记：文件权限　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -409,7 +479,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/05/26/ActionContext详解/" data-title="ActionContext详解" data-url="https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/11/Linux笔记：文件权限/" data-title="Linux笔记：文件权限" data-url="https://github.com/TsubasaBAKU/2016/06/11/Linux笔记：文件权限/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -433,15 +503,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/26/ActionContext详解2/" title="上一篇: ActionContext详解2">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/05/26/pageContext对象/" title="下一篇: pageContext对象">
+            <a href="/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/" title="下一篇: Linux笔记：开机流程与主要启动记录区MBR">
                 <i class="fa fa-angle-right"></i>
             </a>
         

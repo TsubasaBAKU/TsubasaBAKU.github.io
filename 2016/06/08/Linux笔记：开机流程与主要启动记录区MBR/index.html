@@ -9,18 +9,20 @@
 
   <meta charset="utf-8">
   
-  <title>ActionContext详解 | TsubasaBAKU</title>
+  <title>Linux笔记：开机流程与主要启动记录区MBR | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ActionContextActionContext是Action的上下文，Struts2自动在其中保存了一些在Action执行过程中所需的对象，比如session, parameters, locale等。Struts2会根据每个执行HTTP请求的线程来创建对应的ActionContext，即一个线程有一个唯一的ActionContext。因此，使用者可以使用静态方法ActionContext.">
+  <meta name="description" content="开机流程这里我们需要首先提出一个概念：BIOS。BIOS是写在计算机主板上的一个韧体（韧体就是写入硬件的软件程序），BIOS就是在启动的时候，计算机主动执行的第一个程序了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ActionContext详解">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解/index.html">
+<meta property="og:title" content="Linux笔记：开机流程与主要启动记录区MBR">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="ActionContextActionContext是Action的上下文，Struts2自动在其中保存了一些在Action执行过程中所需的对象，比如session, parameters, locale等。Struts2会根据每个执行HTTP请求的线程来创建对应的ActionContext，即一个线程有一个唯一的ActionContext。因此，使用者可以使用静态方法ActionContext.">
-<meta property="og:updated_time" content="2016-05-27T14:03:40.440Z">
+<meta property="og:description" content="开机流程这里我们需要首先提出一个概念：BIOS。BIOS是写在计算机主板上的一个韧体（韧体就是写入硬件的软件程序），BIOS就是在启动的时候，计算机主动执行的第一个程序了。">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/多重引导.png">
+<meta property="og:updated_time" content="2016-06-11T12:39:28.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ActionContext详解">
-<meta name="twitter:description" content="ActionContextActionContext是Action的上下文，Struts2自动在其中保存了一些在Action执行过程中所需的对象，比如session, parameters, locale等。Struts2会根据每个执行HTTP请求的线程来创建对应的ActionContext，即一个线程有一个唯一的ActionContext。因此，使用者可以使用静态方法ActionContext.">
+<meta name="twitter:title" content="Linux笔记：开机流程与主要启动记录区MBR">
+<meta name="twitter:description" content="开机流程这里我们需要首先提出一个概念：BIOS。BIOS是写在计算机主板上的一个韧体（韧体就是写入硬件的软件程序），BIOS就是在启动的时候，计算机主动执行的第一个程序了。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/多重引导.png">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -235,11 +237,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-ActionContext详解" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux笔记：开机流程与主要启动记录区MBR" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/26/ActionContext详解/" class="article-date">
-      <time datetime="2016-05-25T17:15:57.000Z" itemprop="datePublished">2016-05-26</time>
+      <a href="/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/" class="article-date">
+      <time datetime="2016-06-08T15:26:41.000Z" itemprop="datePublished">2016-06-08</time>
 </a>
     </div>
   
@@ -252,7 +254,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ActionContext详解
+      Linux笔记：开机流程与主要启动记录区MBR
     </h1>
   
 
@@ -260,10 +262,14 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/LINUX/">LINUX</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ssh/">Ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开机流程/">开机流程</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -273,23 +279,14 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="ActionContext"><a href="#ActionContext" class="headerlink" title="ActionContext"></a>ActionContext</h2><p>ActionContext是Action的上下文，Struts2自动在其中保存了一些在Action执行过程中所需的对象，比如session, parameters, locale等。Struts2会根据每个执行HTTP请求的线程来创建对应的ActionContext，即一个线程有一个唯一的ActionContext。因此，使用者可以使用静态方法ActionContext.getContext()来获取当前线程的ActionContext，也正是由于这个原因，使用者不用去操心让Action是线程安全的。</p>
-<a id="more"></a>
-<p>无论如何，ActionContext都是用来存放数据的。Struts2本身会在其中放入不少数据，而使用者也可以放入自己想要的数据。ActionContext本身的数据结构是映射结构，即一个Map，用key来映射value。所以使用者完全可以像使用Map一样来使用它，或者直接使用Action.getContextMap()方法来对Map进行操作。</p>
-<p>Struts2本身在其中放入的数据有ActionInvocation、application（即ServletContext）、conversionErrors、Locale、action的name、request的参数、HTTP的Session以及值栈等。完整的列表请参考它的Javadoc。</p>
-<p>由于ActionContext的线程唯一和静态方法就能获得的特性，使得在非Action类中可以直接获得它，而不需要等待Action传入或注入。需要注意的是，它仅在由于request而创建的线程中有效（因为request时才创建对应的ActionContext），而在服务器启动的线程中（比如fliter的init方法）无效。由于在非Action类中访问其的方便性，ActionContext也可以用来在非Action类中向JSP传递数据（因为JSP也能很方便的访问它）。</p>
-<h2 id="ValueStack与ActionContext的联系和区别："><a href="#ValueStack与ActionContext的联系和区别：" class="headerlink" title="ValueStack与ActionContext的联系和区别："></a>ValueStack与ActionContext的联系和区别：</h2><p>相同点：它们都是在一次HTTP请求的范围内使用的，即它们的生命周期都是一次请求。</p>
-<p>不同点：值栈是栈的结构，ActionContext是映射（Map）的结构。</p>
-<p>联系：ValueStack.getContext()方法得到的Map其实就是ActionContext的Map。查看Struts2的源代码可知（Struts2.3.1.2的org.apache.struts2.dispatcher.ng.PrepareOperations的第79行，createActionContext方法），在创建ActionContext时，就是把ValueStack.getContext()作为ActionContext的构造函数的参数。所以，ValueStack和ActionContext本质上可以互相获得。</p>
-<p>注意：在一些文档中，会出现把对象存入“stack‘s context”的字样，其实就是把值存入了ActionContext。所以在阅读这些文档时，要看清楚，到底是放入了栈结构（即值栈），还是映射结构（值栈的context，即ActionContext）。</p>
-<h2 id="如何获得ActionContext："><a href="#如何获得ActionContext：" class="headerlink" title="如何获得ActionContext："></a>如何获得ActionContext：</h2><p>在自定义的拦截器中：使用ActionInvocation.getInvocationContext()或者使用ActionContext.getContext()。</p>
-<p>在Action类中：让拦截器注入或者使用ActionContext.getContext()。</p>
-<p>在非Action类中：让Action类传递参数、使用注入机制注入或者使用ActionContext.getContext()。注意：只有运行在request线程中的代码才能调用ActionContext.getContext()，否则返回的是null。</p>
-<p>在JSP中：一般不需要获得ActionContext本身。</p>
-<h2 id="如何向ActionContext中存入值："><a href="#如何向ActionContext中存入值：" class="headerlink" title="如何向ActionContext中存入值："></a>如何向ActionContext中存入值：</h2><p>在拦截器、Action类、非Action类等Java类中：使用ActionContext.put(Object key, Object value)方法。<br>在JSP中：标签&lt; s:set value=”…”/&gt;默认将值存入ActionContext中（当然，&lt; s:set&gt;标签还可以把值存到其他地方）。另外，许多标签都有var属性（以前用的是id属性，现在id属性已被弃用），这个属性能向ActionContext存入值，key为var属性的值，value为标签的value属性的值。（有些文档写的是向ValueStack的context存入值，其实是一样的）</p>
-<h2 id="如何从ActionContext中读取值："><a href="#如何从ActionContext中读取值：" class="headerlink" title="如何从ActionContext中读取值："></a>如何从ActionContext中读取值：</h2><p>在拦截器、Action类、非Action类等Java类中：使用ActionContext.get(Object key)方法。</p>
-<p>在JSP中：使用#开头的Ognl表达式，比如&lt; s:property value=” #name”/&gt;会调用ActionContext.get( “name”)方法。注意：如果某标签的属性默认不作为Ognl表达式解析，则需要使用 %{ }把表达式括起来，于是就会出现类似”% { # name } “的表达式 。</p>
-<p>总之，在JSP中使用ActionContext一方面是由于它是映射结构，另一方面是能读取Action的一些配置。当你需要为许多Action提供通用的值的话，可以让每个Action都提供getXXX()方法，但更好的方法是在拦截器或JSP模板中把这些通用的值存放到ActionContext中（因为拦截器或JSP模板往往通用于多个Action）。</p>
+        <h1 id="开机流程"><a href="#开机流程" class="headerlink" title="开机流程"></a>开机流程</h1><p>这里我们需要首先提出一个概念：BIOS。BIOS是写在计算机主板上的一个韧体（韧体就是写入硬件的软件程序），BIOS就是在启动的时候，计算机主动执行的第一个程序了。<br><a id="more"></a></p>
+<p>接下来BIOS会分析计算机里有哪些存储设备，我们以硬盘为例，BIOS会找到能够启动的第一个硬盘，并且找到这个硬盘的第一个扇区的MBR(主引导分区)，在仅有446字节的MBR中有基本的启动管理程序，之后就是这个启动管理程序的工作了。</p>
+<p><strong>这个启动管理程序的目的就是加载核心文件。</strong>由于这个程序是操作系统安装时放入的，所以它能够识别硬盘内文件系统的格式，也就能够加载核心文件，之后就是操作系统的任务了。</p>
+<p>在这里我们做几点总结：<br><strong>1. BIOS：是写在硬盘上的韧体，是计算机启动时自动执行的第一个程序，能够根据设置找到存储设备，进而找到启动管理程序。</strong><br><strong>2. MBR：主引导分区。位于第一个扇区，大小为64B，存放基本的启动管理程序。</strong><br><strong>3. 启动管理程序（boot loader）：目的是加载核心文件，是操作系统安装时放入的。</strong><br><strong>4. 核心文件：启动操作系统。</strong></p>
+<h1 id="启动管理程序"><a href="#启动管理程序" class="headerlink" title="启动管理程序"></a>启动管理程序</h1><p>BIOS和MBR都是有硬件支持的，而启动管理程序就是安装在MBR上的一套软件，这个boot loader主要有以下几个功能。<br><strong>1. 提供菜单：使用者可以选择不同的启动项目。</strong><br><strong>2. 加载核心文件：直接指向可启动的程序区段来启动操作系统。</strong><br><strong>3. 转向其他loader：将启动管理功能交给其他loader负责。</strong></p>
+<p>事实上，启动管理程序不仅仅可以安装在第一个扇区的MBR中，还可以安装在其他分区的启动扇区中，正是这个特色实现了多重引导的功能。如下图：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/多重引导.png" alt="cmd-markdown-logo"><br>在上图中，windows和Linux操作系统分别被装在了两个不同的分区。假设MBR中的启动程序能够识别这两个操作系统，如果选择windows启动，那么该MBR中的boot loader就会直接加载windows的核心文件来启动windows系统；如果选择Linux启动，那么这个loader就会将启动任务交给另一个分区的loader来启动，而另一个loader只有一个菜单，所以直接加载核心文件来启动Linux系统。</p>
+<p>我们做几点总结：<br><strong>1. 每个分区都有自己的启动扇区（boot sector）</strong><br><strong>2. 实际可启动的核心文件是放在对应的各个分区内的。</strong><br><strong>3. loader只会识别自己所在分区的核心文件，和其他的loader</strong><br><strong>4. loader可直接或者间接将启动权交给另一个loader。</strong></p>
+<p><strong>为什么装两个系统时，先装Windows再装Linux呢？</strong><br>因为Linux在安装时，我们可以选择将启动管理程序装在MBR或者不同的boot loader中，而且Linux的loader可以让我们手动配置菜单，可以加入Windows的选项。<br>而Windows安装时，它会主动覆盖掉MBR和所在分区的启动扇区，所以原先的MBR中的启动程序就会被覆盖掉而且没有配置菜单的机会。</p>
 
       
     </div>
@@ -298,13 +295,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/05/26/ActionContext详解/">ActionContext详解</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/">Linux笔记：开机流程与主要启动记录区MBR</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
-        <p><span>发布时间:</span>2016-05-26, 01:15:57</p>
-        <p><span>最后更新:</span>2016-05-27, 22:03:40</p>
+        <p><span>发布时间:</span>2016-06-08, 23:26:41</p>
+        <p><span>最后更新:</span>2016-06-11, 20:39:28</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/05/26/ActionContext详解/" title="ActionContext详解">https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/" title="Linux笔记：开机流程与主要启动记录区MBR">https://github.com/TsubasaBAKU/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -317,15 +314,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/26/ActionContext详解2/">
-                    ActionContext详解2
+                <a href="/2016/06/11/Linux笔记：文件权限/">
+                    Linux笔记：文件权限
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/05/26/pageContext对象/">
-                    pageContext对象
+                <a href="/2016/06/08/Linux笔记：磁盘分区/">
+                    Linux笔记：磁盘分区
                 </a>
             </div>
         
@@ -336,7 +333,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ActionContext"><span class="toc-number">1.</span> <span class="toc-text">ActionContext</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ValueStack与ActionContext的联系和区别："><span class="toc-number">2.</span> <span class="toc-text">ValueStack与ActionContext的联系和区别：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何获得ActionContext："><span class="toc-number">3.</span> <span class="toc-text">如何获得ActionContext：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何向ActionContext中存入值："><span class="toc-number">4.</span> <span class="toc-text">如何向ActionContext中存入值：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何从ActionContext中读取值："><span class="toc-number">5.</span> <span class="toc-text">如何从ActionContext中读取值：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#开机流程"><span class="toc-number">1.</span> <span class="toc-text">开机流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#启动管理程序"><span class="toc-number">2.</span> <span class="toc-text">启动管理程序</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -393,7 +390,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"ActionContext详解　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Linux笔记：开机流程与主要启动记录区MBR　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -409,7 +406,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/05/26/ActionContext详解/" data-title="ActionContext详解" data-url="https://github.com/TsubasaBAKU/2016/05/26/ActionContext详解/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/" data-title="Linux笔记：开机流程与主要启动记录区MBR" data-url="https://github.com/TsubasaBAKU/2016/06/08/Linux笔记：开机流程与主要启动记录区MBR/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -433,7 +430,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/26/ActionContext详解2/" title="上一篇: ActionContext详解2">
+            <a href="/2016/06/11/Linux笔记：文件权限/" title="上一篇: Linux笔记：文件权限">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -441,7 +438,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/05/26/pageContext对象/" title="下一篇: pageContext对象">
+            <a href="/2016/06/08/Linux笔记：磁盘分区/" title="下一篇: Linux笔记：磁盘分区">
                 <i class="fa fa-angle-right"></i>
             </a>
         
