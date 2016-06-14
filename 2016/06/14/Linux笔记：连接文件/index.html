@@ -9,25 +9,18 @@
 
   <meta charset="utf-8">
   
-  <title>硬盘基本知识 | TsubasaBAKU</title>
+  <title>Linux笔记：连接文件 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="磁道、扇区、柱面和磁头数
-硬盘最基本的组成部分是由坚硬金属材料制成的涂以磁性介质的盘片，不同容量的硬盘盘片数量不等。每个盘片有两面，都可以记录信息。盘片被分成许多扇形的区域，每个区域叫一个扇区，每个扇区可存储1282的N次方（N=0 1 2 3）字节信息。在DOS中每个扇区是512个字节。盘片表面上，以盘片中心为圆心，不同半径的同心圆称为磁道，不同盘片的相同磁道组成柱面。每个磁盘有两个面，每个面都">
+  <meta name="description" content="我们都知道在Linux中连接方式分为软连接和硬连接，那么这两种方式有什么区别呢？在这里做简单描述。在这之前我们需要了解Linux文件系统的基本知识，在之前的文章中已经讲述过，这里不再重复。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="硬盘基本知识">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/08/硬盘基本知识/index.html">
+<meta property="og:title" content="Linux笔记：连接文件">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/14/Linux笔记：连接文件/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="磁道、扇区、柱面和磁头数
-硬盘最基本的组成部分是由坚硬金属材料制成的涂以磁性介质的盘片，不同容量的硬盘盘片数量不等。每个盘片有两面，都可以记录信息。盘片被分成许多扇形的区域，每个区域叫一个扇区，每个扇区可存储1282的N次方（N=0 1 2 3）字节信息。在DOS中每个扇区是512个字节。盘片表面上，以盘片中心为圆心，不同半径的同心圆称为磁道，不同盘片的相同磁道组成柱面。每个磁盘有两个面，每个面都">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware2.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware3.gif">
-<meta property="og:updated_time" content="2016-06-08T11:25:52.178Z">
+<meta property="og:description" content="我们都知道在Linux中连接方式分为软连接和硬连接，那么这两种方式有什么区别呢？在这里做简单描述。在这之前我们需要了解Linux文件系统的基本知识，在之前的文章中已经讲述过，这里不再重复。">
+<meta property="og:updated_time" content="2016-06-14T13:41:44.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="硬盘基本知识">
-<meta name="twitter:description" content="磁道、扇区、柱面和磁头数
-硬盘最基本的组成部分是由坚硬金属材料制成的涂以磁性介质的盘片，不同容量的硬盘盘片数量不等。每个盘片有两面，都可以记录信息。盘片被分成许多扇形的区域，每个区域叫一个扇区，每个扇区可存储1282的N次方（N=0 1 2 3）字节信息。在DOS中每个扇区是512个字节。盘片表面上，以盘片中心为圆心，不同半径的同心圆称为磁道，不同盘片的相同磁道组成柱面。每个磁盘有两个面，每个面都">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware1.jpg">
+<meta name="twitter:title" content="Linux笔记：连接文件">
+<meta name="twitter:description" content="我们都知道在Linux中连接方式分为软连接和硬连接，那么这两种方式有什么区别呢？在这里做简单描述。在这之前我们需要了解Linux文件系统的基本知识，在之前的文章中已经讲述过，这里不再重复。">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -242,11 +235,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-硬盘基本知识" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux笔记：连接文件" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/08/硬盘基本知识/" class="article-date">
-      <time datetime="2016-06-08T10:57:10.000Z" itemprop="datePublished">2016-06-08</time>
+      <a href="/2016/06/14/Linux笔记：连接文件/" class="article-date">
+      <time datetime="2016-06-14T13:32:12.000Z" itemprop="datePublished">2016-06-14</time>
 </a>
     </div>
   
@@ -259,7 +252,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      硬盘基本知识
+      Linux笔记：连接文件
     </h1>
   
 
@@ -268,13 +261,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/ELSE/">ELSE</a>
+    <a class="article-category-link" href="/categories/LINUX/">LINUX</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/硬盘/">硬盘</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/连接文件/">连接文件</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -284,13 +277,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="磁道、扇区、柱面和磁头数"><a href="#磁道、扇区、柱面和磁头数" class="headerlink" title="磁道、扇区、柱面和磁头数"></a>磁道、扇区、柱面和磁头数</h1><p><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware1.jpg" alt="cmd-markdown-logo"></p>
-<p>硬盘最基本的组成部分是由坚硬金属材料制成的涂以磁性介质的盘片，不同容量的硬盘盘片数量不等。每个盘片有两面，都可以记录信息。盘片被分成许多扇形的区域，每个区域叫一个扇区，每个扇区可存储128<em>2的N次方（N=0 1 2 3）字节信息。在DOS中每个扇区是512个字节。盘片表面上，以盘片中心为圆心，不同半径的同心圆称为磁道，不同盘片的相同磁道组成柱面。每个磁盘有两个面，每个面都有一个磁头，习惯用磁头号来区分。硬盘容量计算公式为：硬盘容量=磁头数</em>每个磁头的柱面<em>每个柱面的扇区</em>扇区容量。<br><a id="more"></a></p>
-<h2 id="磁道"><a href="#磁道" class="headerlink" title="磁道"></a>磁道</h2><p>当磁盘旋转时，磁头若保持在一个位置上，则每个磁头都会在圆盘上划一个圆形轨道，这些圆形轨道就叫做磁道。磁盘上的信息是沿着磁道存放的，相邻的磁道之间并不是紧挨着的，因为磁化单位太近了会互相产生影响，同时也为磁头的读写带来困难。<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware2.jpg" alt="cmd-markdown-logo"></p>
-<h2 id="扇区"><a href="#扇区" class="headerlink" title="扇区"></a>扇区</h2><p>磁盘上的每个磁道被分为若干个弧段，这些弧段便是扇区。每个扇区可以存放512个字节的信息，磁盘驱动器在向磁盘读写数据是都要以扇区为单位。</p>
-<h2 id="柱面"><a href="#柱面" class="headerlink" title="柱面"></a>柱面</h2><p>硬盘通常由重叠的一组盘片组成，每个盘片都被划分成数目相同的磁道，并从外缘0开始编号，具有相同编号的磁道形成一个圆柱，称之为柱面。磁盘的柱面数与一个盘面上的磁道数是相等的。<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/hardware3.gif" alt="cmd-markdown-logo"></p>
-<h1 id="簇"><a href="#簇" class="headerlink" title="簇"></a>簇</h1><p>“簇”是DOS进行分配的最小单位。当创建一个很小的文件时，如是一个字节，则它在磁盘上并不是只占一个字节的空间，而是占有整个一簇。DOS视不同的存储介质（如软盘，硬盘），不同容量的硬盘，簇的大小也不一样。簇的大小可在称为磁盘参数块（BPB）中获取。簇的概念仅适用于数据区。<br>本点：<br>（1）“簇”是DOS进行分配的最小单位。<br>（2）不同的存储介质，不同容量的硬盘，不同的DOS版本，簇的大小也不一样。<br>（3）簇的概念仅适用于数据区。</p>
-<h1 id="扇区编号定义：绝对扇区与DOS扇区"><a href="#扇区编号定义：绝对扇区与DOS扇区" class="headerlink" title="扇区编号定义：绝对扇区与DOS扇区"></a>扇区编号定义：绝对扇区与DOS扇区</h1><p>由前面介绍可知，我们可以用柱面/磁头/扇区来唯一定位磁盘上每一个区域，或是说柱面/磁头/扇区与磁盘上每一个扇区有一一对应关系，通常DOS将“柱 面/磁头/扇区”这样表示法称为“绝对扇区”表示法。但DOS不能直接使用绝对扇区进行磁盘上的信息管理，而是用所谓“相对扇区”或“DOS扇区”。“相 对扇区”只是一个数字，如柱面140，磁头3，扇区4对应的相对扇区号为2757。该数字与绝对扇区“柱面/磁头/扇区”具有一一对应关系。当使用相对扇 区编号时，DOS是从柱面0，磁头1，扇区1开始（注：柱面0，磁头0，扇区1没有DOS扇区编号，DOS下不能访问，只能调用BIOS访问），第一个 DOS扇区编号为0，该磁道上剩余的扇区编号为1到16（设每磁道17个扇区），然后是磁头号为2，柱面为0的17个扇区，形成的DOS扇区号从17到 33。直到该柱面的所有磁头。然后再移到柱面1，磁头1，扇区1继续进行DOS扇区的编号，即按扇区号，磁头号，柱面号（磁道号）增长的顺序连续地分配 DOS扇区号。<br>公式：记DH－－第一个DOS扇区的磁头号<br>DC－－第一个DOS扇区的柱面号<br>DS－－第一个DOS扇区的扇区号<br>NS－－每磁道扇区数<br>NH－－磁盘总的磁头数<br>则某扇区（柱面C，磁头H，扇区S）的相对扇区号RS为：<br>RS＝NH×NS×（C－DC）＋NS×（H－DH）＋（S－DS）<br>若已知RS，DC，DH，DS，NS和NH则<br>S＝（RS　MOD　NS）＋DS<br>H＝（（RS　DIV　NS）MOD　NH）＋DH<br>C＝（（RS　DIV　NS）DIV　NH）＋DC<br>要点：（1）以柱面/磁头/扇区表示的为绝对扇区又称物理磁盘地址<br>（2）单一数字表示的为相对扇区或DOS扇区，又称逻辑扇区号<br>（3）相对扇区与绝对扇区的转换公式</p>
+        <p>我们都知道在Linux中连接方式分为软连接和硬连接，那么这两种方式有什么区别呢？在这里做简单描述。<br>在这之前我们需要了解Linux文件系统的基本知识，在之前的文章中已经讲述过，这里不再重复。<br><a id="more"></a></p>
+<h1 id="硬连接"><a href="#硬连接" class="headerlink" title="硬连接"></a>硬连接</h1><p>简单的说，硬连接就是在某个目录下，新建一个独立的文件，这个文件有独立的inode和block，但是，该block中保存的是被连接的文件的文件名，所以，该连接文件的大小为被连接的文件名的字符长度。</p>
+<p>如果将被连接的文件删除，那么打开连接文件将会有无法打开文件的错误。这是因为在源文件被删除的情况下，无法通过连接文件的block中的源文件名来找到源文件的inode，进而找到block读取数据。</p>
+<h1 id="软连接"><a href="#软连接" class="headerlink" title="软连接"></a>软连接</h1><p>软连接简单的理解就相当于Windows中的快捷方式。这种方式实际上就是在该目录下新建了一个文件名，连接到了已经存在的一个inode上。所以不会有单独的inode和block。可以看出将这个文件名删除，对源文件也不会有影响。</p>
 
       
     </div>
@@ -299,13 +289,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/06/08/硬盘基本知识/">硬盘基本知识</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/14/Linux笔记：连接文件/">Linux笔记：连接文件</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
-        <p><span>发布时间:</span>2016-06-08, 18:57:10</p>
-        <p><span>最后更新:</span>2016-06-08, 19:25:52</p>
+        <p><span>发布时间:</span>2016-06-14, 21:32:12</p>
+        <p><span>最后更新:</span>2016-06-14, 21:41:44</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/06/08/硬盘基本知识/" title="硬盘基本知识">https://github.com/TsubasaBAKU/2016/06/08/硬盘基本知识/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/08/硬盘基本知识/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/14/Linux笔记：连接文件/" title="Linux笔记：连接文件">https://github.com/TsubasaBAKU/2016/06/14/Linux笔记：连接文件/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/14/Linux笔记：连接文件/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -317,16 +307,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/06/08/Linux笔记：磁盘分区/">
-                    Linux笔记：磁盘分区
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/06/02/Java加密算法/">
-                    Java加密算法
+                <a href="/2016/06/14/Linux笔记：文件系统与目录树的关系/">
+                    Linux笔记：文件系统与目录树的关系
                 </a>
             </div>
         
@@ -337,7 +321,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#磁道、扇区、柱面和磁头数"><span class="toc-number">1.</span> <span class="toc-text">磁道、扇区、柱面和磁头数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#磁道"><span class="toc-number">1.1.</span> <span class="toc-text">磁道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扇区"><span class="toc-number">1.2.</span> <span class="toc-text">扇区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#柱面"><span class="toc-number">1.3.</span> <span class="toc-text">柱面</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#簇"><span class="toc-number">2.</span> <span class="toc-text">簇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#扇区编号定义：绝对扇区与DOS扇区"><span class="toc-number">3.</span> <span class="toc-text">扇区编号定义：绝对扇区与DOS扇区</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#硬连接"><span class="toc-number">1.</span> <span class="toc-text">硬连接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#软连接"><span class="toc-number">2.</span> <span class="toc-text">软连接</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -394,7 +378,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"硬盘基本知识　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Linux笔记：连接文件　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -410,7 +394,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/06/08/硬盘基本知识/" data-title="硬盘基本知识" data-url="https://github.com/TsubasaBAKU/2016/06/08/硬盘基本知识/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/14/Linux笔记：连接文件/" data-title="Linux笔记：连接文件" data-url="https://github.com/TsubasaBAKU/2016/06/14/Linux笔记：连接文件/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -434,15 +418,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/06/08/Linux笔记：磁盘分区/" title="上一篇: Linux笔记：磁盘分区">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/06/02/Java加密算法/" title="下一篇: Java加密算法">
+            <a href="/2016/06/14/Linux笔记：文件系统与目录树的关系/" title="下一篇: Linux笔记：文件系统与目录树的关系">
                 <i class="fa fa-angle-right"></i>
             </a>
         
