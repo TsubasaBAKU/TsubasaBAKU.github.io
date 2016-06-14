@@ -9,18 +9,23 @@
 
   <meta charset="utf-8">
   
-  <title>ValueStack笔记 | TsubasaBAKU</title>
+  <title>Linux笔记：文件系统特性 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ValueStackValueStack实际上就是对OGNL的封装，Struts2正是通过ValueStack来进行赋值和取值的！">
+  <meta name="description" content="格式化首先我们来谈谈格式化的概念。为什么需要进行“格式化”呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ValueStack笔记">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/05/27/ValueStack笔记/index.html">
+<meta property="og:title" content="Linux笔记：文件系统特性">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/14/Linux笔记：文件系统特性/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="ValueStackValueStack实际上就是对OGNL的封装，Struts2正是通过ValueStack来进行赋值和取值的！">
-<meta property="og:updated_time" content="2016-05-27T14:03:40.549Z">
+<meta property="og:description" content="格式化首先我们来谈谈格式化的概念。为什么需要进行“格式化”呢？">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/FAT%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/ext2%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/inode结构.png">
+<meta property="og:updated_time" content="2016-06-14T06:41:01.429Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ValueStack笔记">
-<meta name="twitter:description" content="ValueStackValueStack实际上就是对OGNL的封装，Struts2正是通过ValueStack来进行赋值和取值的！">
+<meta name="twitter:title" content="Linux笔记：文件系统特性">
+<meta name="twitter:description" content="格式化首先我们来谈谈格式化的概念。为什么需要进行“格式化”呢？">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.png">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -235,11 +240,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-ValueStack笔记" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux笔记：文件系统特性" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/27/ValueStack笔记/" class="article-date">
-      <time datetime="2016-05-27T09:04:50.000Z" itemprop="datePublished">2016-05-27</time>
+      <a href="/2016/06/14/Linux笔记：文件系统特性/" class="article-date">
+      <time datetime="2016-06-14T04:44:30.000Z" itemprop="datePublished">2016-06-14</time>
 </a>
     </div>
   
@@ -252,7 +257,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ValueStack笔记
+      Linux笔记：文件系统特性
     </h1>
   
 
@@ -261,13 +266,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
+    <a class="article-category-link" href="/categories/LINUX/">LINUX</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ValueStack/">ValueStack</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件系统特性/">文件系统特性</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -277,25 +282,29 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="ValueStack"><a href="#ValueStack" class="headerlink" title="ValueStack"></a>ValueStack</h1><p>ValueStack实际上就是对OGNL的封装，Struts2正是通过ValueStack来进行赋值和取值的！<br><a id="more"></a><br>ValueStack是一个接口，OgnlValueStack是Struts2中的缺省实现。ValueStack中的数据分两部分存放：root和context，与OGNL中的概念一致，同时ValueStack暴露相关的接口：</p>
-<ul>
-<li>void setValue(String expr,Object value);</li>
-<li>Object findValue(String expr);</li>
-</ul>
-<p>通过OGNL表达式来对ValueStack中的数据进行操作。</p>
-<p>ValueStack中的root对象是CompoundRoot，继承了ArrayList，提供了额外的方法：pop（）和push（），用来对root对象中所包含的数据进行存取。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompoundRoot</span> <span class="keyword">extends</span> <span class="title">ArrayList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CompoundRoot</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CompoundRoot</span><span class="params">(List list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(list);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> CompoundRoot <span class="title">cutStack</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CompoundRoot(subList(index, size()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> get(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> remove(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        add(<span class="number">0</span>, o);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>OGNL不支持多个root对象，而Struts2能够支持多个root对象，对OGNL做了扩展。</p>
-<p>如果某个OGNL表达式被传递给ValueStack，而表达式中包含有对root对象的访问操作，ValueStack将依次从栈顶往栈底搜索CompoundRoot对象中所包含的对象，看哪个对象中有相应的属性，找到之后立刻返回。</p>
-<p>在Struts2中，一个请求在最终到达Action的方法之前，Action对象本身会被压入ValueStack，放到ValueStack的CompoundRoot对象中，所以Action对象就是CompoundRoot中的一个元素。看下列代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAction</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> valid;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查看用户的详细信息</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">detail</span><span class="params">()</span></span>&#123;</span><br><span class="line">       username = <span class="string">"张三"</span>;</span><br><span class="line">       age = <span class="number">18</span>;</span><br><span class="line">       valid = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> <span class="string">"detail"</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>页面代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">username:&lt;s:property value=<span class="string">"username"</span>/&gt; &lt;br/&gt;</span><br><span class="line"></span><br><span class="line">valid:&lt;s:property value=<span class="string">"valid"</span>/&gt; &lt;br/&gt;</span><br><span class="line"></span><br><span class="line">age:&lt;s:property value=<span class="string">"age"</span>/&gt; &lt;br/&gt;</span><br></pre></td></tr></table></figure></p>
-<p>上述JSP页面能够正确地将它们的值取出。<s:property value="ognl表达式">。在标签中的OGNL表达式，最终会提交给ValueStack解释。username就是一个OGNL表达式，意思是调用root对象的getUsername（）方法。Struts2将自动搜索CompoundRoot中有哪些元素，检测这些元素是否有getUsername（）方法。</s:property></p>
-<p>在这个例子中，CompoundRoot只有一个对象，就是userAction对象，而这个对象中正好有getUsername（）方法，所以值可以正确取出。</p>
-<p>再看下列代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAction</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查看用户的详细信息</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">detail</span><span class="params">()</span></span>&#123;</span><br><span class="line">       username = <span class="string">"张三"</span>;</span><br><span class="line">       List list = <span class="keyword">new</span> ArrayList();</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">           User user = <span class="keyword">new</span> User();</span><br><span class="line">           user.setUsername(<span class="string">"User"</span>+i);</span><br><span class="line">           list.add(user);</span><br><span class="line">       &#125;</span><br><span class="line">       ActionContext.getContext().put(<span class="string">"users"</span>, list);</span><br><span class="line">       User u = <span class="keyword">new</span> User();</span><br><span class="line">       u.setUsername(<span class="string">"赵毅"</span>);</span><br><span class="line">       ActionContext.getContext().getValueStack().push(u);</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"detail"</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>JSP:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;s:property value="username"/&gt; &lt;br/&gt;</span><br><span class="line">&lt;s:iterator value="#users"&gt;</span><br><span class="line">	&lt;s:property value="username"/&gt;</span><br><span class="line"> 	&lt;s:property value="#root[2].username"/&gt;&lt;br/&gt;</span><br><span class="line">&lt;/s:iterator&gt;</span><br><span class="line">&lt;s:property value="username"/&gt;</span><br><span class="line">&lt;s:property value="#root[1].username"/&gt;</span><br></pre></td></tr></table></figure></p>
-<p>根据刚才的示例，我们知道，第1行的username是“赵毅”（因为JSP在执行这行代码的时候，CompoundRoot中有两个元素：第0个是“user对象赵毅”，第1个是“userAction对象张三”），因此第1行的username将取出CompoundRoot中第0个元素的username属性：赵毅</p>
-<p>第2行代码是iterator标签，只定义了一个value属性，iterator标签将循环访问users这个List中的User对象，并把当前循环的user对象压入到CompoundRoot中！所以，在第3行和第4行代码被执行的时候，CompoundRoot中总共有3个元素：第0个元素是被iterator标签压入的当前循环的user对象；第1个元素是“user对象赵毅”；第2个元素是“userAction对象张三”，因此第3行代码的执行结果就是输出“UserX”，即当前循环的user对象的username属性！iterator标签将会依次取出List中的user对象，并不断压入/弹出user对象（每次循环，都将执行一遍压入/弹出）。而第4行代码取第2个元素的username属性，即userAction对象的username属性：张三。</p>
-<p>第5行代码执行完成之后，在CompoundRoot中将剩下2个元素，与第2行代码被执行之前一样。所以，第6行代码的输出和第1行代码的输出结果是一样的，而第7行代码将取出userAction对象的username属性：张三</p>
+        <h1 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h1><p>首先我们来谈谈格式化的概念。为什么需要进行“格式化”呢？<br><a id="more"></a><br>这是因为每种操作系统所设置的文件属性、文件权限并不相同，为了存放这些文件所需的数据，因此就必须将分区进行格式为，以成为操作系统能够利用的文件系统格式。<br>我们也都知道，每种操作系统使用的文件系统并不相同，比如Windows操作系统支持FAT和NTFS，而Linux则支持ext2，在默认的情况下，Windows是不支持ext2文件系统的。</p>
+<h1 id="文件系统的运行"><a href="#文件系统的运行" class="headerlink" title="文件系统的运行"></a>文件系统的运行</h1><p>那么文件系统是如何运行的呢？这与操作系统文件数据有关。较新的操作系统文件数据除了文件实际内容之外，还有非常多的属性，例如Linux操作系统的文件权限和文件属性。<strong>文件系统通常会把这两部分分开放置，即将文件属性与权限放置在inode中，而文件的实际内容放置在data block中。</strong>这是一个非常重要的属性。另外，还有一个超级块，用来记录文件系统的整体信息，比如inode和data block的总量，剩余量等。</p>
+<p>在这里我们总结一下：</p>
+<ol>
+<li>super block：记录文件系统的整体信息，比如inode和data block的总量、使用量、剩余量等。</li>
+<li>inode：每个inode都有编号，记录文件的属性，一个文件占用一个inode，同时记录此文件的数据所在的data block的号码。</li>
+<li>data block：每个block都有编号，记录文件的实际内容，当一个文件太大时，会占用多个block。</li>
+</ol>
+<p>由于每个inode与block都有编号，而inode中记录有相应文件的block编号，因此，如果能够找到对应文件的inode，就能找到文件的内容，就可以实际读出文件的所有数据了。我们用下图来解释说明下：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.png" alt="cmd-markdown-logo"><br>如上图，系统先格式化出inode与block。假设某一个文件的属性与权限是放置在4号inode，而这个inode中记录的block号码为2,7,13,15这四个号码，那么读取数据的方式就如同上图了。这种方式我们成为索引式文件系统。<br>FAT格式的文件系统并没有inode存在，所以FAT文件系统没有办法将这个文件在一开始就读出来，每个block号码都记录在前一个block当中，如下图：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/FAT%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.png" alt="cmd-markdown-logo"><br>假设我们文件的数据依次写入1,7,4,15这几个block中，但这个文件系统没有办法一口气读出这四个号码，它要一个个找出来，先找到1，再找到7，再找到4，再找到15.如果一个文件数据写入的block快分散的太过厉害，我们的磁盘将无法转一圈时就读到整个数据，要多转几圈才能读到完成内容。</p>
+<p>经常会听到“碎片整理”，需要碎片整理的原因及就是文件写入的block快太过散了，此时读取性能会变的很差。这个时候可以通过碎片整理将同一个文件所属的block汇合在一起，这样数据的读取就变得比较容易。</p>
+<h1 id="Linux的ext2文件系统"><a href="#Linux的ext2文件系统" class="headerlink" title="Linux的ext2文件系统"></a>Linux的ext2文件系统</h1><p>首先说，标准的Linux文件系统ext2就是使用以inode为基础的文件系统。文件系统一开始就将inode与block规划好了，除非重新格式化，或者利用高级命令改变文件系统大小，否则inode与block固定后大小就不在变动。但是如果仔细考虑一下，如果我们的文件系统高达数百GB时，那么将所有的inode与block放在一起是很不明智的决定，因为当两者数量过大时，不易于管理。</p>
+<p>因此，<strong>ext2文件系统在格式化的时候区分为多个块组（block group），每个块组都有独立的inode，block，superblock。</strong></p>
+<p><strong>在文件系统前面有一个启动扇区（boot sector），这个启动扇区可以安装引导装载程序。</strong>这是个非常重要的设计，如此一来我们就能够将不同的引导装载程序安装到别的启动扇区中，而不用覆盖整块硬盘唯一的MBR。如下图：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/ext2%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%B1%9E%E6%80%A7.png" alt="cmd-markdown-logo"><br>这里我们做个总结：</p>
+<ol>
+<li>data block：用来防止文件内容的地方，在ext2文件系统中所支持的block大小为1kb，2kb，4kb三种。在格式化时block大小就固定了，且每个block都有编号，以方便inode的记录。</li>
+<li>原则上block的大小与数量在格式化后就不能再变了，除非重新格式化。</li>
+<li>每个block只能放置一个文件的数据，如果文件小于block大小，则剩余空间不能够再被使用，如果文件大于block大小，则需要多个block来存储这个文件。</li>
+<li>每个inode大小固定均为128bytes。</li>
+<li>每个文件都只会占用一个inode，所以文件系统能够创建的文件数量与inode数量有关。</li>
+<li>系统读取文件时需要先找到inode，并分析inode所记录的权限与用户是否符合，若符合才能够开始实际读取block的内容。</li>
+</ol>
+<p>我们来简略分析一下inode、block与文件大小的关系。inode要记录的数据非常多，但偏偏inode大小又只有128bytes而已，而记录每一个block号码又需要4byte，假设一个文件有400MB且每个block为4KB时，那么至少也需要10万条block号码的记录。inode哪有这么多记录的信息？为此我们系统很聪明地将inode记录block号码区域定义成12个直接、一个间接、一个双间接、与一个三间接记录区。所谓的间接就是再拿一个block当做记录block的号码。如图：<br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/inode结构.png" alt="cmd-markdown-logo"></p>
+<p>superblock记录了整个文件系统相关信息。此外每个blockgroup都可能含有superblock，但是该superblock就是作为第一个block group内super block的备份了，这样可以进行superblock的挽救。</p>
 
       
     </div>
@@ -304,13 +313,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/05/27/ValueStack笔记/">ValueStack笔记</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/14/Linux笔记：文件系统特性/">Linux笔记：文件系统特性</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">TsubasaBAKU</a></p>
-        <p><span>发布时间:</span>2016-05-27, 17:04:50</p>
-        <p><span>最后更新:</span>2016-05-27, 22:03:40</p>
+        <p><span>发布时间:</span>2016-06-14, 12:44:30</p>
+        <p><span>最后更新:</span>2016-06-14, 14:41:01</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/05/27/ValueStack笔记/" title="ValueStack笔记">https://github.com/TsubasaBAKU/2016/05/27/ValueStack笔记/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/05/27/ValueStack笔记/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/14/Linux笔记：文件系统特性/" title="Linux笔记：文件系统特性">https://github.com/TsubasaBAKU/2016/06/14/Linux笔记：文件系统特性/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/TsubasaBAKU/2016/06/14/Linux笔记：文件系统特性/　　作者: TsubasaBAKU" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -322,16 +331,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/27/项目教学视频/">
-                    项目教学视频
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/05/27/OGNL表达式笔记/">
-                    OGNL表达式笔记
+                <a href="/2016/06/11/Linux笔记：文件权限/">
+                    Linux笔记：文件权限
                 </a>
             </div>
         
@@ -342,7 +345,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ValueStack"><span class="toc-number">1.</span> <span class="toc-text">ValueStack</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#格式化"><span class="toc-number">1.</span> <span class="toc-text">格式化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件系统的运行"><span class="toc-number">2.</span> <span class="toc-text">文件系统的运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux的ext2文件系统"><span class="toc-number">3.</span> <span class="toc-text">Linux的ext2文件系统</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -399,7 +402,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"ValueStack笔记　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Linux笔记：文件系统特性　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -415,7 +418,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/05/27/ValueStack笔记/" data-title="ValueStack笔记" data-url="https://github.com/TsubasaBAKU/2016/05/27/ValueStack笔记/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/14/Linux笔记：文件系统特性/" data-title="Linux笔记：文件系统特性" data-url="https://github.com/TsubasaBAKU/2016/06/14/Linux笔记：文件系统特性/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -439,15 +442,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/27/项目教学视频/" title="上一篇: 项目教学视频">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/05/27/OGNL表达式笔记/" title="下一篇: OGNL表达式笔记">
+            <a href="/2016/06/11/Linux笔记：文件权限/" title="下一篇: Linux笔记：文件权限">
                 <i class="fa fa-angle-right"></i>
             </a>
         
