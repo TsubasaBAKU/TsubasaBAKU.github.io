@@ -9,20 +9,18 @@
 
   <meta charset="utf-8">
   
-  <title>JVM内存分析 | TsubasaBAKU</title>
+  <title>MySQL索引：哈希索引 | TsubasaBAKU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVA体系结构JVM体系结构，老话题了。">
+  <meta name="description" content="在之前的博文中我们探讨了一种常见的索引类型：B-Tree索引。这里我们继续来讨论另一种索引类型：哈希索引。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM内存分析">
-<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/01/JVM内存分析/index.html">
+<meta property="og:title" content="MySQL索引：哈希索引">
+<meta property="og:url" content="https://github.com/TsubasaBAKU/2016/06/28/MySQL索引：哈希索引/index.html">
 <meta property="og:site_name" content="TsubasaBAKU">
-<meta property="og:description" content="JVA体系结构JVM体系结构，老话题了。">
-<meta property="og:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/JVM.png">
-<meta property="og:updated_time" content="2016-06-01T15:59:48.211Z">
+<meta property="og:description" content="在之前的博文中我们探讨了一种常见的索引类型：B-Tree索引。这里我们继续来讨论另一种索引类型：哈希索引。">
+<meta property="og:updated_time" content="2016-06-28T07:38:32.814Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM内存分析">
-<meta name="twitter:description" content="JVA体系结构JVM体系结构，老话题了。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/JVM.png">
+<meta name="twitter:title" content="MySQL索引：哈希索引">
+<meta name="twitter:description" content="在之前的博文中我们探讨了一种常见的索引类型：B-Tree索引。这里我们继续来讨论另一种索引类型：哈希索引。">
   
     <link rel="alternative" href="/atom.xml" title="TsubasaBAKU" type="application/atom+xml">
   
@@ -237,11 +235,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-JVM内存分析" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-MySQL索引：哈希索引" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/01/JVM内存分析/" class="article-date">
-      <time datetime="2016-06-01T15:14:48.000Z" itemprop="datePublished">2016-06-01</time>
+      <a href="/2016/06/28/MySQL索引：哈希索引/" class="article-date">
+      <time datetime="2016-06-28T05:42:18.000Z" itemprop="datePublished">2016-06-28</time>
 </a>
     </div>
   
@@ -254,7 +252,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JVM内存分析
+      MySQL索引：哈希索引
     </h1>
   
 
@@ -263,13 +261,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/索引/">索引</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -279,30 +277,28 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="JVA体系结构"><a href="#JVA体系结构" class="headerlink" title="JVA体系结构"></a>JVA体系结构</h1><p>JVM体系结构，老话题了。<br><a id="more"></a><br><img src="https://raw.githubusercontent.com/TsubasaBAKU/BLOGIMG/master/JVM.png" alt="!cmd-markdown-logo"></p>
-<p>如上图所示，JVM主要包括两个子系统和两个组件。</p>
-<p><strong>两个子系统：</strong></p>
-<ul>
-<li><p>Class Loader子系统：根据类的全限定类名来将类加载到运行时数据区的METHOD AREA中。我们可以通过extends java.lang.ClassLoader来编写自己的ClassLoader。</p>
-</li>
-<li><p>Excution Engine子系统：执行引擎。执行classes中的指令。所有JDK的核心都是Excution Engine。不同JDK好坏主要取决于它们各自实现Excution Engine的好坏。</p>
-</li>
-</ul>
-<p><strong>两个组件</strong></p>
-<ul>
-<li><p>Native Interface组件：与native libraries交互，是与其他编程语言的接口。当调用native方法的时候，就进入了一个不受JVM限制的区域。</p>
-</li>
-<li><p>Runtime Data Area：运行时数据区，就是我们常说的JVM内存。主要包括五个部分：</p>
-</li>
-</ul>
+        <p>在之前的博文中我们探讨了一种常见的索引类型：B-Tree索引。这里我们继续来讨论另一种索引类型：哈希索引。<br><a id="more"></a></p>
+<h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p>哈希索引基于哈希表实现，<strong>只有精确匹配索引的所有列的查询才有效</strong>，这是非常重要的一点。对于每一行数据，存储引擎都会对所有的索引列计算一个哈希码，哈希码是一个较小的值，并且不同的键值行计算出的哈希码也不一样。<strong>哈希索引将所有的哈希码存储在索引中，同时在哈希表中保存指向每个数据行的指针。</strong></p>
+<p>在MySQL中，只有Memory引擎显式支持哈希索引，这也是Memory引擎的默认索引类型。Memory引擎也同时支持B-Tree索引，值得一提的是，Memory引擎是支持非唯一哈希索引的。如果多个列的哈希值相同，索引会以链表的方式存放多个记录指针到同一个哈希条目中。</p>
+<p>我们直接来看一个例子，假设有下表：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CREATE TABLE <span class="title">testhash</span><span class="params">(</span><br><span class="line">   	fname VARCHAR(<span class="number">50</span>)</span> NOT NULL,</span><br><span class="line">       lname <span class="title">VARCHAR</span><span class="params">(<span class="number">50</span>)</span> NOT NULL,</span><br><span class="line">       KEY USING <span class="title">HASH</span><span class="params">(fname)</span></span><br><span class="line">   )ENGINE</span>=MEMORY;</span><br></pre></td></tr></table></figure></p>
+<p>表中包含如下数据：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM testhash;</span><br></pre></td></tr></table></figure></p>
+<pre><code>| fname    | lname   |
+| Arjen    | Lentz   |
+| Baron    | Schwartz|
+| Peter    | Zaitsev |
+</code></pre><p>假设索引使用家乡的哈希函数f()，它返回下面的值：<br>    f(‘Arjen’)=2323<br>    f(‘Baron’)=7437<br>    f(‘Peter’)=8784<br>则哈希索引的数据结构如下：<br>    | Slot     | Value         |<br>    | 2323     | 指向第1行的指针 |<br>    | 7437     | 指向第2行的指针 |<br>    | 8784     | 指向第3行的指针 |<br><strong>槽中的编号是顺序的，但是数据行不是。</strong></p>
+<p>现在有如下查询：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT lname FROM testhash WHERE fname=<span class="string">'Peter'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>MySQL会先计算‘Peter’的哈希值，并使用该值找到对应的记录指针。因为f(‘Peter’)=8784，所以MySQL在索引中查找8784，可以找到指向第3行的指针。最后一步是比较第三行的值是否为‘Peter’，以确保就是要查找的行。</p>
+<p>因为索引自身只存储对应的哈希值，所以索引的结构十分紧凑，这也让哈希表索引查找的速度非常快。然而哈希索引也有他的限制：</p>
 <ol>
-<li>Heap：java堆，一个JVM实例只存在一个堆空间。</li>
-<li>Stack：java栈，JVM对java栈只有两种操作：以帧为单位压栈、以帧为单位出栈。</li>
-<li>Method Area：方法区，被装载的class信息存放在这个区域。当JVM装载某个类型时，它使用类装载器定位到相应的class文件，读入文件内容并传输到JVM中。</li>
-<li>Program Counter：程序计数器。每个线程在启动时都会创建一个pc，总是指向下一条要执行的指令。</li>
-<li>Native Method Stack：本地方法栈。保存的进入本地方法的地址。</li>
+<li>哈希索引只包含哈希值和行指针，而不存储字段值，所以不能使用索引中的值来避免读取行。</li>
+<li>哈希索引数据并不是按照索引值顺序存储的，所以也就无法用于排序。</li>
+<li>哈希索引也不支持部分索引列匹配查找，因为哈希索引始终是使用索引列的全部内容来计算哈希值的。</li>
+<li>哈希索引只支持等值比较查询，包括=、IN()、&lt;=&gt;，也不支持任何范围查询。</li>
+<li>访问哈希索引的速度非常快，除非有很多哈希冲突。</li>
+<li>如果哈希冲突很多的话，一些索引维护曹锁的代价也会很高。</li>
 </ol>
-<p><strong>只有堆和方法区是线程共享的，栈，PC，本地方法栈都是以线程为粒度的，每个线程都拥有自己的部分。</strong></p>
+<p>InnoDB有一种特殊的功能叫做“自适应哈希索引”。当InnoDB注意到某些索引值被使用的非常频繁时，它会在内存中基于B-Tree索引之上再创建一个哈希索引，这样就让B-Tree索引也具有哈希索引的一些优点，比如快速的哈希查找，这是一个完全自动的内部行为，用户无法控制或者配置。</p>
 
       
     </div>
@@ -311,13 +307,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/06/01/JVM内存分析/">JVM内存分析</a></p>
+        <p><span>Title:</span><a href="/2016/06/28/MySQL索引：哈希索引/">MySQL索引：哈希索引</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">TsubasaBAKU</a></p>
-        <p><span>Created:</span>2016-06-01, 23:14:48</p>
-        <p><span>Updated:</span>2016-06-01, 23:59:48</p>
+        <p><span>Created:</span>2016-06-28, 13:42:18</p>
+        <p><span>Updated:</span>2016-06-28, 15:38:32</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/06/01/JVM内存分析/" title="JVM内存分析">https://github.com/TsubasaBAKU/2016/06/01/JVM内存分析/</a>
-            <span class="copy-path" data-clipboard-text="From https://github.com/TsubasaBAKU/2016/06/01/JVM内存分析/　　By TsubasaBAKU" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/06/28/MySQL索引：哈希索引/" title="MySQL索引：哈希索引">https://github.com/TsubasaBAKU/2016/06/28/MySQL索引：哈希索引/</a>
+            <span class="copy-path" data-clipboard-text="From https://github.com/TsubasaBAKU/2016/06/28/MySQL索引：哈希索引/　　By TsubasaBAKU" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -329,16 +325,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/06/02/Java类加载回顾/">
-                    Java类加载回顾
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/06/01/多线程回顾/">
-                    多线程回顾
+                <a href="/2016/06/27/MySQL索引：B-Tree索引/">
+                    MySQL索引：B-Tree索引
                 </a>
             </div>
         
@@ -349,7 +339,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JVA体系结构"><span class="toc-number">1.</span> <span class="toc-text">JVA体系结构</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#哈希索引"><span class="toc-number">1.</span> <span class="toc-text">哈希索引</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -406,7 +396,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"JVM内存分析　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"MySQL索引：哈希索引　| TsubasaBAKU　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -422,7 +412,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/06/01/JVM内存分析/" data-title="JVM内存分析" data-url="https://github.com/TsubasaBAKU/2016/06/01/JVM内存分析/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/28/MySQL索引：哈希索引/" data-title="MySQL索引：哈希索引" data-url="https://github.com/TsubasaBAKU/2016/06/28/MySQL索引：哈希索引/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -446,15 +436,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/06/02/Java类加载回顾/" title="Pre: Java类加载回顾">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/06/01/多线程回顾/" title="Next: 多线程回顾">
+            <a href="/2016/06/27/MySQL索引：B-Tree索引/" title="Next: MySQL索引：B-Tree索引">
                 <i class="fa fa-angle-right"></i>
             </a>
         
